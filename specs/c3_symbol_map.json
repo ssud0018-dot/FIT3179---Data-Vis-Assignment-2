@@ -1,0 +1,564 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Proportional symbol map of Australia's capital cities. Circle size shows ICT job ads in August 2026 and colour shows change since January 2019.",
+  "width": "container",
+  "height": 470,
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
+  },
+  "projection": {
+    "type": "conicEqualArea",
+    "parallels": [
+      -18,
+      -36
+    ],
+    "rotate": [
+      -134,
+      0
+    ],
+    "center": [
+      0,
+      -26
+    ]
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "data/aus_states.geojson",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#eef1f2",
+        "stroke": "#cdd5da",
+        "strokeWidth": 0.8
+      }
+    },
+    {
+      "data": {
+        "url": "data/capitals.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "city": "string",
+            "region": "string",
+            "state": "string",
+            "lat": "number",
+            "lon": "number",
+            "ict_ads_2019": "number",
+            "ict_ads_latest": "number",
+            "pct_change": "number",
+            "ict_share_latest_pct": "number",
+            "ict_share_2019_pct": "number"
+          }
+        }
+      },
+      "mark": {
+        "type": "circle",
+        "opacity": 0.92,
+        "stroke": "#ffffff",
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "size": {
+          "field": "ict_ads_latest",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              2000
+            ],
+            "range": [
+              70,
+              3000
+            ]
+          },
+          "legend": {
+            "title": "ICT job ads, Aug 2026",
+            "orient": "top-left",
+            "values": [
+              100,
+              500,
+              2000
+            ],
+            "format": ",d",
+            "symbolFillColor": "#c9d0d4",
+            "symbolStrokeColor": "#c9d0d4"
+          }
+        },
+        "color": {
+          "field": "pct_change",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -60,
+              0,
+              60
+            ],
+            "range": [
+              "#b23a2b",
+              "#b4bcc2",
+              "#2a6f97"
+            ],
+            "interpolate": "lab"
+          },
+          "legend": {
+            "title": "Change since Jan 2019 (%)",
+            "orient": "top-left",
+            "format": "+d",
+            "gradientLength": 160
+          }
+        },
+        "order": {
+          "field": "ict_ads_latest",
+          "sort": "descending"
+        },
+        "tooltip": [
+          {
+            "field": "region",
+            "type": "nominal",
+            "title": "Region"
+          },
+          {
+            "field": "ict_ads_2019",
+            "type": "quantitative",
+            "title": "ICT job ads, Jan 2019",
+            "format": ",d"
+          },
+          {
+            "field": "ict_ads_latest",
+            "type": "quantitative",
+            "title": "ICT job ads, Aug 2026",
+            "format": ",d"
+          },
+          {
+            "field": "pct_change",
+            "type": "quantitative",
+            "title": "Change (%)",
+            "format": "+.1f"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "data/capitals.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "city": "string",
+            "region": "string",
+            "state": "string",
+            "lat": "number",
+            "lon": "number",
+            "ict_ads_2019": "number",
+            "ict_ads_latest": "number",
+            "pct_change": "number",
+            "ict_share_latest_pct": "number",
+            "ict_share_2019_pct": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.city === 'Sydney'"
+        },
+        {
+          "calculate": "datum.city + ' ' + format(datum.pct_change,'+.0f') + '%'",
+          "as": "label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 36,
+        "dy": -2,
+        "fontSize": 11,
+        "fontWeight": 600,
+        "color": "#1c2530"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label"
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "data/capitals.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "city": "string",
+            "region": "string",
+            "state": "string",
+            "lat": "number",
+            "lon": "number",
+            "ict_ads_2019": "number",
+            "ict_ads_latest": "number",
+            "pct_change": "number",
+            "ict_share_latest_pct": "number",
+            "ict_share_2019_pct": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.city === 'Brisbane'"
+        },
+        {
+          "calculate": "datum.city + ' ' + format(datum.pct_change,'+.0f') + '%'",
+          "as": "label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 26,
+        "dy": 0,
+        "fontSize": 11,
+        "fontWeight": 600,
+        "color": "#1c2530"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label"
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "data/capitals.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "city": "string",
+            "region": "string",
+            "state": "string",
+            "lat": "number",
+            "lon": "number",
+            "ict_ads_2019": "number",
+            "ict_ads_latest": "number",
+            "pct_change": "number",
+            "ict_share_latest_pct": "number",
+            "ict_share_2019_pct": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.city === 'Melbourne'"
+        },
+        {
+          "calculate": "datum.city + ' ' + format(datum.pct_change,'+.0f') + '%'",
+          "as": "label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -34,
+        "dy": 4,
+        "fontSize": 11,
+        "fontWeight": 600,
+        "color": "#1c2530"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label"
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "data/capitals.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "city": "string",
+            "region": "string",
+            "state": "string",
+            "lat": "number",
+            "lon": "number",
+            "ict_ads_2019": "number",
+            "ict_ads_latest": "number",
+            "pct_change": "number",
+            "ict_share_latest_pct": "number",
+            "ict_share_2019_pct": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.city === 'Canberra'"
+        },
+        {
+          "calculate": "datum.city + ' ' + format(datum.pct_change,'+.0f') + '%'",
+          "as": "label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 10,
+        "dy": 28,
+        "fontSize": 11,
+        "fontWeight": 600,
+        "color": "#1c2530"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label"
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "data/capitals.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "city": "string",
+            "region": "string",
+            "state": "string",
+            "lat": "number",
+            "lon": "number",
+            "ict_ads_2019": "number",
+            "ict_ads_latest": "number",
+            "pct_change": "number",
+            "ict_share_latest_pct": "number",
+            "ict_share_2019_pct": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.city === 'Adelaide'"
+        },
+        {
+          "calculate": "datum.city + ' ' + format(datum.pct_change,'+.0f') + '%'",
+          "as": "label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -18,
+        "dy": 2,
+        "fontSize": 11,
+        "fontWeight": 600,
+        "color": "#1c2530"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label"
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "data/capitals.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "city": "string",
+            "region": "string",
+            "state": "string",
+            "lat": "number",
+            "lon": "number",
+            "ict_ads_2019": "number",
+            "ict_ads_latest": "number",
+            "pct_change": "number",
+            "ict_share_latest_pct": "number",
+            "ict_share_2019_pct": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.city === 'Perth'"
+        },
+        {
+          "calculate": "datum.city + ' ' + format(datum.pct_change,'+.0f') + '%'",
+          "as": "label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -20,
+        "dy": 0,
+        "fontSize": 11,
+        "fontWeight": 600,
+        "color": "#1c2530"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label"
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "data/capitals.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "city": "string",
+            "region": "string",
+            "state": "string",
+            "lat": "number",
+            "lon": "number",
+            "ict_ads_2019": "number",
+            "ict_ads_latest": "number",
+            "pct_change": "number",
+            "ict_share_latest_pct": "number",
+            "ict_share_2019_pct": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.city === 'Hobart'"
+        },
+        {
+          "calculate": "datum.city + ' ' + format(datum.pct_change,'+.0f') + '%'",
+          "as": "label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "dx": 0,
+        "dy": 18,
+        "fontSize": 11,
+        "fontWeight": 600,
+        "color": "#1c2530"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label"
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "data/capitals.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "city": "string",
+            "region": "string",
+            "state": "string",
+            "lat": "number",
+            "lon": "number",
+            "ict_ads_2019": "number",
+            "ict_ads_latest": "number",
+            "pct_change": "number",
+            "ict_share_latest_pct": "number",
+            "ict_share_2019_pct": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.city === 'Darwin'"
+        },
+        {
+          "calculate": "datum.city + ' ' + format(datum.pct_change,'+.0f') + '%'",
+          "as": "label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "dx": 0,
+        "dy": -14,
+        "fontSize": 11,
+        "fontWeight": 600,
+        "color": "#1c2530"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label"
+        }
+      }
+    }
+  ]
+}

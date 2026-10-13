@@ -1,0 +1,188 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Dumbbell chart comparing ICT Professional share of all job ads in each capital city, January 2019 and August 2026.",
+  "width": "container",
+  "height": {
+    "step": 30
+  },
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding"
+  },
+  "data": {
+    "url": "data/capitals.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "city": "string",
+        "region": "string",
+        "state": "string",
+        "lat": "number",
+        "lon": "number",
+        "ict_ads_2019": "number",
+        "ict_ads_latest": "number",
+        "pct_change": "number",
+        "ict_share_latest_pct": "number",
+        "ict_share_2019_pct": "number"
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rule",
+        "color": "#c4ccd1",
+        "strokeWidth": 3
+      },
+      "encoding": {
+        "y": {
+          "field": "city",
+          "type": "nominal",
+          "sort": {
+            "field": "ict_share_2019_pct",
+            "order": "descending"
+          },
+          "axis": {
+            "title": null,
+            "ticks": false,
+            "domain": false,
+            "labelFontSize": 12,
+            "labelColor": "#1c2530"
+          }
+        },
+        "x": {
+          "field": "ict_share_2019_pct",
+          "type": "quantitative",
+          "axis": {
+            "title": "ICT share of all job ads in the city (%)"
+          }
+        },
+        "x2": {
+          "field": "ict_share_latest_pct"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "fold": [
+            "ict_share_2019_pct",
+            "ict_share_latest_pct"
+          ],
+          "as": [
+            "when",
+            "share"
+          ]
+        },
+        {
+          "calculate": "datum.when === 'ict_share_2019_pct' ? 'Jan 2019' : 'Aug 2026'",
+          "as": "period"
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "size": 110,
+        "opacity": 1,
+        "stroke": "#ffffff",
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "y": {
+          "field": "city",
+          "type": "nominal",
+          "sort": {
+            "field": "ict_share_2019_pct",
+            "order": "descending"
+          },
+          "axis": {
+            "title": null,
+            "ticks": false,
+            "domain": false,
+            "labelFontSize": 12,
+            "labelColor": "#1c2530"
+          }
+        },
+        "x": {
+          "field": "share",
+          "type": "quantitative",
+          "axis": {
+            "title": "ICT share of all job ads in the city (%)"
+          }
+        },
+        "color": {
+          "field": "period",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Jan 2019",
+              "Aug 2026"
+            ],
+            "range": [
+              "#8fa3ad",
+              "#c8452d"
+            ]
+          },
+          "legend": {
+            "title": null,
+            "orient": "top",
+            "symbolType": "circle"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "region",
+            "type": "nominal",
+            "title": "Region"
+          },
+          {
+            "field": "period",
+            "type": "nominal",
+            "title": "Period"
+          },
+          {
+            "field": "share",
+            "type": "quantitative",
+            "title": "ICT share of job ads (%)",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -11,
+        "fontSize": 11,
+        "fontWeight": 600,
+        "color": "#1c2530"
+      },
+      "encoding": {
+        "y": {
+          "field": "city",
+          "type": "nominal",
+          "sort": {
+            "field": "ict_share_2019_pct",
+            "order": "descending"
+          },
+          "axis": {
+            "title": null,
+            "ticks": false,
+            "domain": false,
+            "labelFontSize": 12,
+            "labelColor": "#1c2530"
+          }
+        },
+        "x": {
+          "field": "ict_share_latest_pct",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "ict_share_latest_pct",
+          "type": "quantitative",
+          "format": ".1f"
+        }
+      }
+    }
+  ]
+}

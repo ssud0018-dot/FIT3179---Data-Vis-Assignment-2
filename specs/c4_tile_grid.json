@@ -1,0 +1,480 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Tile grid map: each state is a small tile placed roughly where it sits on the map, with a line showing the trend in ICT job ads since January 2019 (January 2019 = 100).",
+  "width": 508,
+  "height": 392,
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding"
+  },
+  "data": {
+    "url": "data/ict_state_index.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "date": "string",
+        "state": "string",
+        "ict_index_2019": "number"
+      }
+    }
+  },
+  "transform": [
+    {
+      "lookup": "state",
+      "from": {
+        "data": {
+          "url": "data/state_tiles.csv",
+          "format": {
+            "type": "csv",
+            "parse": {
+              "state": "string",
+              "name": "string",
+              "row": "number",
+              "col": "number"
+            }
+          }
+        },
+        "key": "state",
+        "fields": [
+          "name",
+          "row",
+          "col"
+        ]
+      }
+    },
+    {
+      "calculate": "(toNumber(slice(datum.date,0,4)) - 2019) * 12 + toNumber(slice(datum.date,5,7)) - 1",
+      "as": "m"
+    },
+    {
+      "calculate": "datum.col * 130 + 8 + datum.m / 91 * 102",
+      "as": "px"
+    },
+    {
+      "calculate": "datum.row * 100 + 26 + (1 - (datum.ict_index_2019 - 20) / 170) * 58",
+      "as": "py"
+    },
+    {
+      "calculate": "datum.row * 100 + 26 + (1 - (100 - 20) / 170) * 58",
+      "as": "py100"
+    },
+    {
+      "calculate": "datum.row * 100 + 84",
+      "as": "pbase"
+    }
+  ],
+  "layer": [
+    {
+      "data": {
+        "url": "data/state_tiles.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "state": "string",
+            "name": "string",
+            "row": "number",
+            "col": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "calculate": "datum.col * 130",
+          "as": "x0"
+        },
+        {
+          "calculate": "datum.col * 130 + 118",
+          "as": "x1"
+        },
+        {
+          "calculate": "datum.row * 100",
+          "as": "y0"
+        },
+        {
+          "calculate": "datum.row * 100 + 92",
+          "as": "y1"
+        }
+      ],
+      "mark": {
+        "type": "rect",
+        "fill": "#f4f6f7",
+        "stroke": "#dfe4e7",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "x": {
+          "field": "x0",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              508
+            ],
+            "nice": false,
+            "zero": false
+          },
+          "axis": null
+        },
+        "x2": {
+          "field": "x1"
+        },
+        "y": {
+          "field": "y0",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              392,
+              0
+            ],
+            "nice": false,
+            "zero": false
+          },
+          "axis": null
+        },
+        "y2": {
+          "field": "y1"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "line",
+        "color": "#aab3ba",
+        "strokeDash": [
+          3,
+          3
+        ],
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "x": {
+          "field": "px",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              508
+            ],
+            "nice": false,
+            "zero": false
+          },
+          "axis": null
+        },
+        "y": {
+          "field": "py100",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              392,
+              0
+            ],
+            "nice": false,
+            "zero": false
+          },
+          "axis": null
+        },
+        "detail": {
+          "field": "state"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "area",
+        "color": "#c8452d",
+        "opacity": 0.13
+      },
+      "encoding": {
+        "x": {
+          "field": "px",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              508
+            ],
+            "nice": false,
+            "zero": false
+          },
+          "axis": null
+        },
+        "y": {
+          "field": "py",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              392,
+              0
+            ],
+            "nice": false,
+            "zero": false
+          },
+          "axis": null
+        },
+        "y2": {
+          "field": "pbase"
+        },
+        "detail": {
+          "field": "state"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "line",
+        "color": "#c8452d",
+        "strokeWidth": 1.8
+      },
+      "encoding": {
+        "x": {
+          "field": "px",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              508
+            ],
+            "nice": false,
+            "zero": false
+          },
+          "axis": null
+        },
+        "y": {
+          "field": "py",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              392,
+              0
+            ],
+            "nice": false,
+            "zero": false
+          },
+          "axis": null
+        },
+        "detail": {
+          "field": "state"
+        },
+        "tooltip": [
+          {
+            "field": "name",
+            "type": "nominal",
+            "title": "State"
+          },
+          {
+            "field": "date",
+            "type": "nominal",
+            "title": "Month"
+          },
+          {
+            "field": "ict_index_2019",
+            "type": "quantitative",
+            "title": "ICT job ads (Jan 2019 = 100)",
+            "format": ".0f"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "data/state_tiles.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "state": "string",
+            "name": "string",
+            "row": "number",
+            "col": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "calculate": "datum.col * 130 + 8",
+          "as": "tx"
+        },
+        {
+          "calculate": "datum.row * 100 + 6",
+          "as": "ty"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "top",
+        "fontWeight": 700,
+        "fontSize": 13,
+        "color": "#1c2530"
+      },
+      "encoding": {
+        "x": {
+          "field": "tx",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              508
+            ],
+            "nice": false,
+            "zero": false
+          },
+          "axis": null
+        },
+        "y": {
+          "field": "ty",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              392,
+              0
+            ],
+            "nice": false,
+            "zero": false
+          },
+          "axis": null
+        },
+        "text": {
+          "field": "state"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.date === '2026-08-01'"
+        },
+        {
+          "calculate": "datum.ict_index_2019 - 100",
+          "as": "chg"
+        },
+        {
+          "calculate": "format(datum.chg,'+.0f') + '%'",
+          "as": "lbl"
+        },
+        {
+          "calculate": "datum.col * 130 + 118 - 6",
+          "as": "rx"
+        },
+        {
+          "calculate": "datum.row * 100 + 6",
+          "as": "ry"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "top",
+        "fontWeight": 700,
+        "fontSize": 13,
+        "color": "#c8452d"
+      },
+      "encoding": {
+        "x": {
+          "field": "rx",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              508
+            ],
+            "nice": false,
+            "zero": false
+          },
+          "axis": null
+        },
+        "y": {
+          "field": "ry",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              392,
+              0
+            ],
+            "nice": false,
+            "zero": false
+          },
+          "axis": null
+        },
+        "text": {
+          "field": "lbl"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.date === '2026-08-01'"
+        },
+        {
+          "calculate": "datum.ict_index_2019 - 100",
+          "as": "chg"
+        },
+        {
+          "calculate": "format(datum.chg,'+.0f') + '%'",
+          "as": "lbl"
+        },
+        {
+          "calculate": "datum.col * 130 + 118 - 6",
+          "as": "rx"
+        },
+        {
+          "calculate": "datum.row * 100 + 6",
+          "as": "ry"
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "size": 38,
+        "color": "#c8452d",
+        "stroke": "#ffffff",
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "x": {
+          "field": "px",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              508
+            ],
+            "nice": false,
+            "zero": false
+          },
+          "axis": null
+        },
+        "y": {
+          "field": "py",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              392,
+              0
+            ],
+            "nice": false,
+            "zero": false
+          },
+          "axis": null
+        },
+        "tooltip": [
+          {
+            "field": "name",
+            "type": "nominal",
+            "title": "State"
+          },
+          {
+            "field": "date",
+            "type": "nominal",
+            "title": "Month"
+          },
+          {
+            "field": "ict_index_2019",
+            "type": "quantitative",
+            "title": "ICT job ads (Jan 2019 = 100)",
+            "format": ".0f"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,144 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Bar chart of the percentage growth in the number of workers in five ICT occupations between the 2016 and 2021 Censuses.",
+  "width": "container",
+  "height": {
+    "step": 38
+  },
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding"
+  },
+  "data": {
+    "url": "data/census_ict_occupations.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "occupation": "string",
+        "workers_2016": "number",
+        "workers_2021": "number",
+        "pct_change": "number",
+        "label": "string",
+        "pct_label": "string"
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "color": "#2f7f90",
+        "cornerRadiusEnd": 4,
+        "height": {
+          "band": 0.6
+        }
+      },
+      "encoding": {
+        "y": {
+          "field": "label",
+          "type": "nominal",
+          "sort": {
+            "field": "pct_change",
+            "order": "descending"
+          },
+          "axis": {
+            "title": null,
+            "ticks": false,
+            "domain": false,
+            "labelLimit": 330,
+            "labelFontSize": 12,
+            "labelColor": "#1c2530",
+            "labelLineHeight": 15,
+            "labelExpr": "split(datum.label, '|')"
+          }
+        },
+        "x": {
+          "field": "pct_change",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              62
+            ]
+          },
+          "axis": {
+            "title": "Change in number of workers, 2016 → 2021 (%)",
+            "format": "d"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "occupation",
+            "type": "nominal",
+            "title": "Occupation"
+          },
+          {
+            "field": "workers_2016",
+            "type": "quantitative",
+            "title": "Workers, 2016",
+            "format": ",d"
+          },
+          {
+            "field": "workers_2021",
+            "type": "quantitative",
+            "title": "Workers, 2021",
+            "format": ",d"
+          },
+          {
+            "field": "pct_change",
+            "type": "quantitative",
+            "title": "Change (%)",
+            "format": "+.1f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 6,
+        "fontSize": 12,
+        "fontWeight": 700,
+        "color": "#1c2530"
+      },
+      "encoding": {
+        "y": {
+          "field": "label",
+          "type": "nominal",
+          "sort": {
+            "field": "pct_change",
+            "order": "descending"
+          },
+          "axis": {
+            "title": null,
+            "ticks": false,
+            "domain": false,
+            "labelLimit": 330,
+            "labelFontSize": 12,
+            "labelColor": "#1c2530",
+            "labelLineHeight": 15,
+            "labelExpr": "split(datum.label, '|')"
+          }
+        },
+        "x": {
+          "field": "pct_change",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              62
+            ]
+          },
+          "axis": {
+            "title": "Change in number of workers, 2016 → 2021 (%)",
+            "format": "d"
+          }
+        },
+        "text": {
+          "field": "pct_label"
+        }
+      }
+    }
+  ]
+}

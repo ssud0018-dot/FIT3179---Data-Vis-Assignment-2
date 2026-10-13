@@ -1,0 +1,29 @@
+{
+  "font": "IBM Plex Sans, Helvetica, Arial, sans-serif",
+  "background": "#ffffff",
+  "view": {
+    "stroke": null
+  },
+  "axis": {
+    "labelColor": "#5b6770",
+    "titleColor": "#5b6770",
+    "gridColor": "#e8ebed",
+    "domainColor": "#c4ccd1",
+    "tickColor": "#c4ccd1",
+    "labelFontSize": 11,
+    "titleFontSize": 11,
+    "titleFontWeight": "normal",
+    "titlePadding": 10
+  },
+  "legend": {
+    "labelColor": "#5b6770",
+    "titleColor": "#5b6770",
+    "labelFontSize": 11,
+    "titleFontSize": 11,
+    "titleFontWeight": "normal"
+  },
+  "text": {
+    "color": "#1c2530",
+    "fontSize": 11
+  }
+}

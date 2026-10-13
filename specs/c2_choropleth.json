@@ -1,0 +1,373 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Choropleth map of Australian states showing ICT Professional job ads as a share of all job ads, August 2026.",
+  "width": "container",
+  "height": 470,
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
+  },
+  "projection": {
+    "type": "conicEqualArea",
+    "parallels": [
+      -18,
+      -36
+    ],
+    "rotate": [
+      -134,
+      0
+    ],
+    "center": [
+      0,
+      -26
+    ]
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "data/aus_states.geojson",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "transform": [
+        {
+          "lookup": "properties.STATE_NAME",
+          "from": {
+            "data": {
+              "url": "data/states_latest.csv",
+              "format": {
+                "type": "csv",
+                "parse": {
+                  "state": "string",
+                  "state_name": "string",
+                  "ict_ads_2019": "number",
+                  "ict_ads_latest": "number",
+                  "share_2019": "number",
+                  "share_latest": "number",
+                  "pct_change": "number"
+                }
+              }
+            },
+            "key": "state_name",
+            "fields": [
+              "state",
+              "share_latest",
+              "share_2019",
+              "ict_ads_latest",
+              "pct_change"
+            ]
+          }
+        },
+        {
+          "calculate": "round(datum.share_latest * 10) / 10 < 1.5 ? 'Under 1.5%' : round(datum.share_latest * 10) / 10 < 2.5 ? '1.5–2.5%' : round(datum.share_latest * 10) / 10 < 4 ? '2.5–4%' : round(datum.share_latest * 10) / 10 < 8 ? '4–8%' : 'Over 8%'",
+          "as": "bin"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "stroke": "#ffffff",
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "color": {
+          "field": "bin",
+          "type": "ordinal",
+          "scale": {
+            "domain": [
+              "Under 1.5%",
+              "1.5–2.5%",
+              "2.5–4%",
+              "4–8%",
+              "Over 8%"
+            ],
+            "range": [
+              "#e3eff1",
+              "#b4d6db",
+              "#73b0ba",
+              "#2f7f90",
+              "#0b4455"
+            ]
+          },
+          "legend": {
+            "title": "ICT share of all job ads, Aug 2026",
+            "symbolType": "square",
+            "symbolSize": 220,
+            "titleLimit": 320,
+            "orient": "bottom-left"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "properties.STATE_NAME",
+            "type": "nominal",
+            "title": "State"
+          },
+          {
+            "field": "share_latest",
+            "type": "quantitative",
+            "title": "ICT share of job ads, Aug 2026 (%)",
+            "format": ".1f"
+          },
+          {
+            "field": "share_2019",
+            "type": "quantitative",
+            "title": "ICT share, Jan 2019 (%)",
+            "format": ".1f"
+          },
+          {
+            "field": "ict_ads_latest",
+            "type": "quantitative",
+            "title": "ICT job ads, Aug 2026",
+            "format": ",.0f"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "state": "ACT",
+            "lat": -35.28,
+            "lon": 149.13
+          }
+        ]
+      },
+      "transform": [
+        {
+          "lookup": "state",
+          "from": {
+            "data": {
+              "url": "data/states_latest.csv",
+              "format": {
+                "type": "csv",
+                "parse": {
+                  "state": "string",
+                  "state_name": "string",
+                  "ict_ads_2019": "number",
+                  "ict_ads_latest": "number",
+                  "share_2019": "number",
+                  "share_latest": "number",
+                  "pct_change": "number"
+                }
+              }
+            },
+            "key": "state",
+            "fields": [
+              "share_latest"
+            ]
+          }
+        },
+        {
+          "calculate": "round(datum.share_latest * 10) / 10 < 1.5 ? 'Under 1.5%' : round(datum.share_latest * 10) / 10 < 2.5 ? '1.5–2.5%' : round(datum.share_latest * 10) / 10 < 4 ? '2.5–4%' : round(datum.share_latest * 10) / 10 < 8 ? '4–8%' : 'Over 8%'",
+          "as": "bin"
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "size": 170,
+        "stroke": "#1c2530",
+        "strokeWidth": 1.2
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "bin",
+          "type": "ordinal",
+          "scale": {
+            "domain": [
+              "Under 1.5%",
+              "1.5–2.5%",
+              "2.5–4%",
+              "4–8%",
+              "Over 8%"
+            ],
+            "range": [
+              "#e3eff1",
+              "#b4d6db",
+              "#73b0ba",
+              "#2f7f90",
+              "#0b4455"
+            ]
+          },
+          "legend": {
+            "title": "ICT share of all job ads, Aug 2026",
+            "symbolType": "square",
+            "symbolSize": 220,
+            "titleLimit": 320,
+            "orient": "bottom-left"
+          }
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "state": "WA",
+            "lat": -26.0,
+            "lon": 122.5
+          },
+          {
+            "state": "NT",
+            "lat": -19.8,
+            "lon": 133.5
+          },
+          {
+            "state": "SA",
+            "lat": -30.0,
+            "lon": 135.5
+          },
+          {
+            "state": "QLD",
+            "lat": -22.8,
+            "lon": 144.5
+          },
+          {
+            "state": "NSW",
+            "lat": -32.6,
+            "lon": 146.4
+          },
+          {
+            "state": "VIC",
+            "lat": -36.9,
+            "lon": 144.2
+          },
+          {
+            "state": "TAS",
+            "lat": -44.9,
+            "lon": 146.7,
+            "outside": true
+          }
+        ]
+      },
+      "transform": [
+        {
+          "lookup": "state",
+          "from": {
+            "data": {
+              "url": "data/states_latest.csv",
+              "format": {
+                "type": "csv",
+                "parse": {
+                  "state": "string",
+                  "state_name": "string",
+                  "ict_ads_2019": "number",
+                  "ict_ads_latest": "number",
+                  "share_2019": "number",
+                  "share_latest": "number",
+                  "pct_change": "number"
+                }
+              }
+            },
+            "key": "state",
+            "fields": [
+              "share_latest"
+            ]
+          }
+        },
+        {
+          "calculate": "datum.state + ' ' + format(datum.share_latest,'.1f') + '%'",
+          "as": "label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": 11,
+        "fontWeight": 600
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label"
+        },
+        "color": {
+          "condition": {
+            "test": "!datum.outside && datum.share_latest >= 4",
+            "value": "#ffffff"
+          },
+          "value": "#1c2530"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "state": "ACT",
+            "lat": -35.28,
+            "lon": 149.13
+          }
+        ]
+      },
+      "transform": [
+        {
+          "lookup": "state",
+          "from": {
+            "data": {
+              "url": "data/states_latest.csv",
+              "format": {
+                "type": "csv",
+                "parse": {
+                  "state": "string",
+                  "state_name": "string",
+                  "ict_ads_2019": "number",
+                  "ict_ads_latest": "number",
+                  "share_2019": "number",
+                  "share_latest": "number",
+                  "pct_change": "number"
+                }
+              }
+            },
+            "key": "state",
+            "fields": [
+              "share_latest"
+            ]
+          }
+        },
+        {
+          "calculate": "datum.state + ' ' + format(datum.share_latest,'.1f') + '%'",
+          "as": "label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 12,
+        "dy": 4,
+        "fontSize": 11,
+        "fontWeight": 600,
+        "color": "#1c2530"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label"
+        }
+      }
+    }
+  ]
+}

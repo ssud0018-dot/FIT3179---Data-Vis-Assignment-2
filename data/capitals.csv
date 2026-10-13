@@ -1,0 +1,9 @@
+city,region,state,lat,lon,ict_ads_2019,ict_ads_latest,pct_change,ict_share_latest_pct,ict_share_2019_pct
+Sydney,Greater Sydney,NSW,-33.87,151.21,4148,1969,-52.5,4.54,8.26
+Melbourne,Greater Melbourne,VIC,-37.81,144.96,2886,1515,-47.5,4.04,7.14
+Brisbane,Greater Brisbane,QLD,-27.47,153.03,1294,830,-35.9,2.91,7.29
+Adelaide,Greater Adelaide,SA,-34.93,138.6,354,303,-14.4,2.53,5.59
+Perth,Greater Perth,WA,-31.95,115.86,616,435,-29.4,1.95,5.37
+Hobart,Greater Hobart,TAS,-42.88,147.33,34,36,5.9,2.34,3.15
+Darwin,Greater Darwin,NT,-12.46,130.84,35,33,-5.7,1.83,3.04
+Canberra,Australian Capital Territory,ACT,-35.28,149.13,825,457,-44.6,10.31,16.35
