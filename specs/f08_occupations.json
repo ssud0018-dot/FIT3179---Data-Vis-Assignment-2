@@ -1,0 +1,424 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Dot plot ranking 48 occupation groups by change in job advertisements since January 2019. ICT Professionals fell the most.",
+  "width": "container",
+  "height": {
+    "step": 17
+  },
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding"
+  },
+  "data": {
+    "url": "data/occupation_groups_national.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "code": "string",
+        "occupation": "string",
+        "ads_2019_01": "number",
+        "ads_latest": "number",
+        "pct_change": "number",
+        "latest_month": "string"
+      }
+    }
+  },
+  "transform": [
+    {
+      "calculate": "length(datum.occupation) > 62 ? slice(datum.occupation,0,61) + '…' : datum.occupation",
+      "as": "label"
+    },
+    {
+      "calculate": "datum.code === '26' ? 'ICT Professionals' : 'Other occupation groups'",
+      "as": "group"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "rule",
+        "strokeWidth": 1.6
+      },
+      "encoding": {
+        "y": {
+          "field": "label",
+          "type": "nominal",
+          "sort": {
+            "field": "pct_change",
+            "order": "descending"
+          },
+          "axis": {
+            "title": null,
+            "labelFontSize": 13,
+            "labelLimit": 340,
+            "ticks": false,
+            "domain": false
+          }
+        },
+        "x": {
+          "field": "pct_change",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -70,
+              150
+            ]
+          },
+          "axis": {
+            "title": "Change in monthly job ads, Jan 2019 → Aug 2026 (%)",
+            "grid": true,
+            "values": [
+              -60,
+              -40,
+              -20,
+              0,
+              20,
+              40,
+              60,
+              80,
+              100,
+              120,
+              140
+            ],
+            "labelExpr": "datum.value > 0 ? '+' + datum.value : replace(toString(datum.value), '-', '−')"
+          }
+        },
+        "x2": {
+          "datum": 0
+        },
+        "color": {
+          "field": "group",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "ICT Professionals",
+              "Other occupation groups"
+            ],
+            "range": [
+              "#c8452d",
+              "#8a959d"
+            ]
+          },
+          "legend": {
+            "title": null,
+            "orient": "top",
+            "symbolType": "circle"
+          }
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "circle",
+        "size": 70,
+        "stroke": "#ffffff",
+        "strokeWidth": 1.5,
+        "opacity": 1
+      },
+      "encoding": {
+        "y": {
+          "field": "label",
+          "type": "nominal",
+          "sort": {
+            "field": "pct_change",
+            "order": "descending"
+          },
+          "axis": {
+            "title": null,
+            "labelFontSize": 13,
+            "labelLimit": 340,
+            "ticks": false,
+            "domain": false
+          }
+        },
+        "x": {
+          "field": "pct_change",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -70,
+              150
+            ]
+          },
+          "axis": {
+            "title": "Change in monthly job ads, Jan 2019 → Aug 2026 (%)",
+            "grid": true,
+            "values": [
+              -60,
+              -40,
+              -20,
+              0,
+              20,
+              40,
+              60,
+              80,
+              100,
+              120,
+              140
+            ],
+            "labelExpr": "datum.value > 0 ? '+' + datum.value : replace(toString(datum.value), '-', '−')"
+          }
+        },
+        "color": {
+          "field": "group",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "ICT Professionals",
+              "Other occupation groups"
+            ],
+            "range": [
+              "#c8452d",
+              "#8a959d"
+            ]
+          },
+          "legend": {
+            "title": null,
+            "orient": "top",
+            "symbolType": "circle"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "occupation",
+            "type": "nominal",
+            "title": "Occupation group"
+          },
+          {
+            "field": "ads_2019_01",
+            "type": "quantitative",
+            "title": "Job ads, Jan 2019",
+            "format": ",.0f"
+          },
+          {
+            "field": "ads_latest",
+            "type": "quantitative",
+            "title": "Job ads, Aug 2026",
+            "format": ",.0f"
+          },
+          {
+            "field": "pct_change",
+            "type": "quantitative",
+            "title": "Change (%)",
+            "format": "+.1f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "rule",
+        "color": "#1c2530",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "x": {
+          "datum": 0,
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "indexof([\"26\"],datum.code) >= 0"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -10,
+        "fontSize": 13,
+        "fontWeight": 700,
+        "color": "#1c2530"
+      },
+      "encoding": {
+        "y": {
+          "field": "label",
+          "type": "nominal",
+          "sort": {
+            "field": "pct_change",
+            "order": "descending"
+          },
+          "axis": {
+            "title": null,
+            "labelFontSize": 13,
+            "labelLimit": 340,
+            "ticks": false,
+            "domain": false
+          }
+        },
+        "x": {
+          "field": "pct_change",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -70,
+              150
+            ]
+          },
+          "axis": {
+            "title": "Change in monthly job ads, Jan 2019 → Aug 2026 (%)",
+            "grid": true,
+            "values": [
+              -60,
+              -40,
+              -20,
+              0,
+              20,
+              40,
+              60,
+              80,
+              100,
+              120,
+              140
+            ],
+            "labelExpr": "datum.value > 0 ? '+' + datum.value : replace(toString(datum.value), '-', '−')"
+          }
+        },
+        "text": {
+          "field": "pct_change",
+          "type": "quantitative",
+          "format": "+.0f"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "indexof([\"2H\", \"3B\", \"81\"],datum.code) >= 0"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 10,
+        "fontSize": 13,
+        "fontWeight": 700,
+        "color": "#1c2530"
+      },
+      "encoding": {
+        "y": {
+          "field": "label",
+          "type": "nominal",
+          "sort": {
+            "field": "pct_change",
+            "order": "descending"
+          },
+          "axis": {
+            "title": null,
+            "labelFontSize": 13,
+            "labelLimit": 340,
+            "ticks": false,
+            "domain": false
+          }
+        },
+        "x": {
+          "field": "pct_change",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -70,
+              150
+            ]
+          },
+          "axis": {
+            "title": "Change in monthly job ads, Jan 2019 → Aug 2026 (%)",
+            "grid": true,
+            "values": [
+              -60,
+              -40,
+              -20,
+              0,
+              20,
+              40,
+              60,
+              80,
+              100,
+              120,
+              140
+            ],
+            "labelExpr": "datum.value > 0 ? '+' + datum.value : replace(toString(datum.value), '-', '−')"
+          }
+        },
+        "text": {
+          "field": "pct_change",
+          "type": "quantitative",
+          "format": "+.0f"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "t": "Most groups now advertise more jobs than in 2019",
+            "x": 22,
+            "k": "a"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "fontSize": 13,
+        "fontStyle": "italic",
+        "color": "#5b6770",
+        "y": {
+          "expr": "height * 0.34"
+        }
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -70,
+              150
+            ]
+          }
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "t": "ICT: biggest fall of all 48 groups",
+            "x": -1
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 12,
+        "fontSize": 14,
+        "fontWeight": 700,
+        "color": "#a8321d",
+        "y": {
+          "expr": "height - 8"
+        }
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -70,
+              150
+            ]
+          }
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    }
+  ]
+}

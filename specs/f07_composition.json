@@ -1,0 +1,354 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Stacked bars showing each state's share of the eight states' combined ICT job ads, January 2019 and August 2026.",
+  "width": "container",
+  "height": {
+    "step": 78
+  },
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding"
+  },
+  "data": {
+    "values": [
+      {
+        "when": "January 2019",
+        "state": "NSW",
+        "ads": 4649.5,
+        "pct": 40.54,
+        "x0": 0,
+        "x1": 40.54,
+        "mid": 20.27,
+        "fill": "#2c4a5a",
+        "tc": "#ffffff",
+        "lbl": "NSW 41%"
+      },
+      {
+        "when": "January 2019",
+        "state": "VIC",
+        "ads": 3247.6,
+        "pct": 28.31,
+        "x0": 40.54,
+        "x1": 68.85,
+        "mid": 54.7,
+        "fill": "#4a6c7e",
+        "tc": "#ffffff",
+        "lbl": "VIC 28%"
+      },
+      {
+        "when": "January 2019",
+        "state": "QLD",
+        "ads": 1580.2,
+        "pct": 13.78,
+        "x0": 68.85,
+        "x1": 82.63,
+        "mid": 75.74,
+        "fill": "#6f8fa0",
+        "tc": "#1c2530",
+        "lbl": "QLD 14%"
+      },
+      {
+        "when": "January 2019",
+        "state": "ACT",
+        "ads": 853.8,
+        "pct": 7.44,
+        "x0": 82.63,
+        "x1": 90.07,
+        "mid": 86.35,
+        "fill": "#93adbb",
+        "tc": "#1c2530",
+        "lbl": "ACT 7%"
+      },
+      {
+        "when": "January 2019",
+        "state": "WA",
+        "ads": 664.2,
+        "pct": 5.79,
+        "x0": 90.07,
+        "x1": 95.86,
+        "mid": 92.97,
+        "fill": "#b2c6d0",
+        "tc": "#1c2530",
+        "lbl": ""
+      },
+      {
+        "when": "January 2019",
+        "state": "SA",
+        "ads": 394.6,
+        "pct": 3.44,
+        "x0": 95.86,
+        "x1": 99.31,
+        "mid": 97.58,
+        "fill": "#cddae1",
+        "tc": "#1c2530",
+        "lbl": ""
+      },
+      {
+        "when": "January 2019",
+        "state": "TAS",
+        "ads": 44.8,
+        "pct": 0.39,
+        "x0": 99.31,
+        "x1": 99.7,
+        "mid": 99.5,
+        "fill": "#e3ebef",
+        "tc": "#1c2530",
+        "lbl": ""
+      },
+      {
+        "when": "January 2019",
+        "state": "NT",
+        "ads": 34.9,
+        "pct": 0.3,
+        "x0": 99.7,
+        "x1": 100.0,
+        "mid": 99.85,
+        "fill": "#eef3f5",
+        "tc": "#1c2530",
+        "lbl": ""
+      },
+      {
+        "when": "August 2026",
+        "state": "NSW",
+        "ads": 2034.3,
+        "pct": 35.02,
+        "x0": 0,
+        "x1": 35.02,
+        "mid": 17.51,
+        "fill": "#2c4a5a",
+        "tc": "#ffffff",
+        "lbl": "NSW 35%"
+      },
+      {
+        "when": "August 2026",
+        "state": "VIC",
+        "ads": 1527.4,
+        "pct": 26.3,
+        "x0": 35.02,
+        "x1": 61.32,
+        "mid": 48.17,
+        "fill": "#4a6c7e",
+        "tc": "#ffffff",
+        "lbl": "VIC 26%"
+      },
+      {
+        "when": "August 2026",
+        "state": "QLD",
+        "ads": 970.4,
+        "pct": 16.71,
+        "x0": 61.32,
+        "x1": 78.02,
+        "mid": 69.67,
+        "fill": "#6f8fa0",
+        "tc": "#1c2530",
+        "lbl": "QLD 17%"
+      },
+      {
+        "when": "August 2026",
+        "state": "ACT",
+        "ads": 456.0,
+        "pct": 7.85,
+        "x0": 78.02,
+        "x1": 85.87,
+        "mid": 81.95,
+        "fill": "#93adbb",
+        "tc": "#1c2530",
+        "lbl": "ACT 8%"
+      },
+      {
+        "when": "August 2026",
+        "state": "WA",
+        "ads": 436.6,
+        "pct": 7.52,
+        "x0": 85.87,
+        "x1": 93.39,
+        "mid": 89.63,
+        "fill": "#b2c6d0",
+        "tc": "#1c2530",
+        "lbl": "WA 8%"
+      },
+      {
+        "when": "August 2026",
+        "state": "SA",
+        "ads": 300.4,
+        "pct": 5.17,
+        "x0": 93.39,
+        "x1": 98.56,
+        "mid": 95.98,
+        "fill": "#cddae1",
+        "tc": "#1c2530",
+        "lbl": ""
+      },
+      {
+        "when": "August 2026",
+        "state": "TAS",
+        "ads": 48.3,
+        "pct": 0.83,
+        "x0": 98.56,
+        "x1": 99.39,
+        "mid": 98.98,
+        "fill": "#e3ebef",
+        "tc": "#1c2530",
+        "lbl": ""
+      },
+      {
+        "when": "August 2026",
+        "state": "NT",
+        "ads": 35.2,
+        "pct": 0.61,
+        "x0": 99.39,
+        "x1": 100.0,
+        "mid": 99.7,
+        "fill": "#eef3f5",
+        "tc": "#1c2530",
+        "lbl": ""
+      }
+    ]
+  },
+  "encoding": {
+    "y": {
+      "field": "when",
+      "type": "nominal",
+      "sort": [
+        "January 2019",
+        "August 2026"
+      ],
+      "axis": {
+        "title": null,
+        "ticks": false,
+        "domain": false,
+        "labelFontSize": 14,
+        "labelColor": "#1c2530"
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "stroke": "#ffffff",
+        "strokeWidth": 2,
+        "height": {
+          "band": 0.78
+        }
+      },
+      "encoding": {
+        "x": {
+          "field": "x0",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ],
+            "nice": false
+          },
+          "axis": {
+            "title": "Share of the combined ICT job ads of all eight states (%)",
+            "values": [
+              0,
+              20,
+              40,
+              60,
+              80,
+              100
+            ]
+          }
+        },
+        "x2": {
+          "field": "x1"
+        },
+        "color": {
+          "field": "state",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "NSW",
+              "VIC",
+              "QLD",
+              "ACT",
+              "WA",
+              "SA",
+              "TAS",
+              "NT"
+            ],
+            "range": [
+              "#2c4a5a",
+              "#4a6c7e",
+              "#6f8fa0",
+              "#93adbb",
+              "#b2c6d0",
+              "#cddae1",
+              "#e3ebef",
+              "#eef3f5"
+            ]
+          },
+          "legend": {
+            "title": null,
+            "orient": "top",
+            "symbolType": "square",
+            "symbolSize": 260,
+            "columns": 8
+          }
+        },
+        "tooltip": [
+          {
+            "field": "state",
+            "type": "nominal",
+            "title": "State"
+          },
+          {
+            "field": "when",
+            "type": "nominal",
+            "title": "Month"
+          },
+          {
+            "field": "ads",
+            "type": "quantitative",
+            "title": "ICT job ads",
+            "format": ",.0f"
+          },
+          {
+            "field": "pct",
+            "type": "quantitative",
+            "title": "Share of all states' ICT ads (%)",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.lbl !== ''"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": 13,
+        "fontWeight": 700
+      },
+      "encoding": {
+        "x": {
+          "field": "mid",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ],
+            "nice": false
+          }
+        },
+        "text": {
+          "field": "lbl"
+        },
+        "color": {
+          "field": "tc",
+          "type": "nominal",
+          "scale": null
+        }
+      }
+    }
+  ]
+}

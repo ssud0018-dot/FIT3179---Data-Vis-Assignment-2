@@ -1,0 +1,337 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Matrix showing, for the 25 ICT occupations that were rated in national shortage at least once, whether each was in shortage in the Occupation Shortage List each year from 2021 to 2026. The number of ICT occupations in shortage (out of 43) peaks at 23 in 2022 and falls to 8 in 2026.",
+  "width": "container",
+  "height": {
+    "step": 24
+  },
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding"
+  },
+  "data": {
+    "url": "data/osl_ict_shortage.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "osca_code": "number",
+        "occupation": "string",
+        "year": "number",
+        "status": "string",
+        "years_in_shortage": "number",
+        "n_short_year": "number"
+      }
+    }
+  },
+  "transform": [
+    {
+      "filter": "datum.years_in_shortage > 0"
+    },
+    {
+      "calculate": "toString(datum.year)",
+      "as": "yr"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "rect",
+        "stroke": "#ffffff",
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "x": {
+          "field": "yr",
+          "type": "ordinal",
+          "sort": [
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025",
+            "2026"
+          ],
+          "axis": {
+            "title": null,
+            "orient": "top",
+            "labelAngle": 0,
+            "ticks": false,
+            "domain": false,
+            "labelFontSize": 14,
+            "labelFontWeight": "bold",
+            "labelColor": "#1c2530"
+          }
+        },
+        "y": {
+          "field": "occupation",
+          "type": "nominal",
+          "sort": [
+            "Cloud Engineer",
+            "Cyber Governance Risk and Compliance Specialist",
+            "Cyber Security Architect",
+            "DevOps Engineer",
+            "Cyber Security Advice and Assessment Specialist",
+            "Cyber Security Engineer",
+            "Cyber Security Operations Coordinator",
+            "Data Architect",
+            "Data Engineer",
+            "Cyber Security Analyst",
+            "ICT Test Analyst",
+            "Penetration Tester",
+            "Software Engineer",
+            "Solution Architect",
+            "ICT Quality Assurance Engineer",
+            "Network Architect",
+            "ICT Network and Systems Engineer",
+            "Network Administrator",
+            "Systems Analyst",
+            "Web Developer",
+            "Cloud Architect",
+            "Database Administrator",
+            "Digital Game Developer",
+            "ICT Business Analyst",
+            "ICT Project Manager",
+            "Number in shortage"
+          ],
+          "axis": {
+            "title": null,
+            "ticks": false,
+            "domain": false,
+            "labelFontSize": 13,
+            "labelColor": "#1c2530",
+            "labelLimit": 340
+          }
+        },
+        "color": {
+          "field": "status",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Shortage",
+              "No shortage"
+            ],
+            "range": [
+              "#b8432f",
+              "#cddae1"
+            ]
+          },
+          "legend": {
+            "title": null,
+            "orient": "bottom",
+            "direction": "horizontal",
+            "symbolType": "square",
+            "symbolSize": 260,
+            "symbolStrokeColor": "#9aa6ad",
+            "symbolStrokeWidth": 1
+          }
+        },
+        "tooltip": [
+          {
+            "field": "occupation",
+            "type": "nominal",
+            "title": "Occupation"
+          },
+          {
+            "field": "year",
+            "type": "quantitative",
+            "title": "Year",
+            "format": "d"
+          },
+          {
+            "field": "status",
+            "type": "nominal",
+            "title": "Rating"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.status === 'Not assessed'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": 15,
+        "color": "#5b6770"
+      },
+      "encoding": {
+        "x": {
+          "field": "yr",
+          "type": "ordinal",
+          "sort": [
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025",
+            "2026"
+          ],
+          "axis": {
+            "title": null,
+            "orient": "top",
+            "labelAngle": 0,
+            "ticks": false,
+            "domain": false,
+            "labelFontSize": 14,
+            "labelFontWeight": "bold",
+            "labelColor": "#1c2530"
+          }
+        },
+        "y": {
+          "field": "occupation",
+          "type": "nominal",
+          "sort": [
+            "Cloud Engineer",
+            "Cyber Governance Risk and Compliance Specialist",
+            "Cyber Security Architect",
+            "DevOps Engineer",
+            "Cyber Security Advice and Assessment Specialist",
+            "Cyber Security Engineer",
+            "Cyber Security Operations Coordinator",
+            "Data Architect",
+            "Data Engineer",
+            "Cyber Security Analyst",
+            "ICT Test Analyst",
+            "Penetration Tester",
+            "Software Engineer",
+            "Solution Architect",
+            "ICT Quality Assurance Engineer",
+            "Network Architect",
+            "ICT Network and Systems Engineer",
+            "Network Administrator",
+            "Systems Analyst",
+            "Web Developer",
+            "Cloud Architect",
+            "Database Administrator",
+            "Digital Game Developer",
+            "ICT Business Analyst",
+            "ICT Project Manager",
+            "Number in shortage"
+          ],
+          "axis": {
+            "title": null,
+            "ticks": false,
+            "domain": false,
+            "labelFontSize": 13,
+            "labelColor": "#1c2530",
+            "labelLimit": 340
+          }
+        },
+        "text": {
+          "value": "–"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "yr": "2021",
+            "occupation": "Number in shortage",
+            "n": "13"
+          },
+          {
+            "yr": "2022",
+            "occupation": "Number in shortage",
+            "n": "23"
+          },
+          {
+            "yr": "2023",
+            "occupation": "Number in shortage",
+            "n": "21"
+          },
+          {
+            "yr": "2024",
+            "occupation": "Number in shortage",
+            "n": "16"
+          },
+          {
+            "yr": "2025",
+            "occupation": "Number in shortage",
+            "n": "7"
+          },
+          {
+            "yr": "2026",
+            "occupation": "Number in shortage",
+            "n": "8"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "fontSize": 16,
+        "fontWeight": 700,
+        "color": "#a8321d"
+      },
+      "encoding": {
+        "x": {
+          "field": "yr",
+          "type": "ordinal",
+          "sort": [
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025",
+            "2026"
+          ],
+          "axis": {
+            "title": null,
+            "orient": "top",
+            "labelAngle": 0,
+            "ticks": false,
+            "domain": false,
+            "labelFontSize": 14,
+            "labelFontWeight": "bold",
+            "labelColor": "#1c2530"
+          }
+        },
+        "y": {
+          "field": "occupation",
+          "type": "nominal",
+          "sort": [
+            "Cloud Engineer",
+            "Cyber Governance Risk and Compliance Specialist",
+            "Cyber Security Architect",
+            "DevOps Engineer",
+            "Cyber Security Advice and Assessment Specialist",
+            "Cyber Security Engineer",
+            "Cyber Security Operations Coordinator",
+            "Data Architect",
+            "Data Engineer",
+            "Cyber Security Analyst",
+            "ICT Test Analyst",
+            "Penetration Tester",
+            "Software Engineer",
+            "Solution Architect",
+            "ICT Quality Assurance Engineer",
+            "Network Architect",
+            "ICT Network and Systems Engineer",
+            "Network Administrator",
+            "Systems Analyst",
+            "Web Developer",
+            "Cloud Architect",
+            "Database Administrator",
+            "Digital Game Developer",
+            "ICT Business Analyst",
+            "ICT Project Manager",
+            "Number in shortage"
+          ],
+          "axis": {
+            "title": null,
+            "ticks": false,
+            "domain": false,
+            "labelFontSize": 13,
+            "labelColor": "#1c2530",
+            "labelLimit": 340
+          }
+        },
+        "text": {
+          "field": "n"
+        }
+      }
+    }
+  ]
+}

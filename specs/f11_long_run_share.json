@@ -1,0 +1,258 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Line chart of ICT Professional share of all job ads in each state, 2006 to August 2026. The ACT is highlighted and is highest in every month.",
+  "width": "container",
+  "height": 330,
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding"
+  },
+  "data": {
+    "url": "data/ict_state_monthly.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "date": "string",
+        "state": "string",
+        "ict_ads": "number",
+        "all_ads": "number",
+        "ict_share_pct": "number"
+      }
+    }
+  },
+  "transform": [
+    {
+      "filter": "datum.state !== 'AUST'"
+    },
+    {
+      "calculate": "toDate(datum.date)",
+      "as": "d"
+    },
+    {
+      "calculate": "datum.state === 'ACT' ? 'ACT' : 'Other states'",
+      "as": "grp"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 1.6
+      },
+      "encoding": {
+        "x": {
+          "field": "d",
+          "type": "temporal",
+          "axis": {
+            "title": null,
+            "format": "%Y",
+            "tickCount": {
+              "interval": "year",
+              "step": 2
+            },
+            "grid": false
+          }
+        },
+        "y": {
+          "field": "ict_share_pct",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              26
+            ]
+          },
+          "axis": {
+            "title": "ICT share of all job ads (%)",
+            "values": [
+              0,
+              5,
+              10,
+              15,
+              20,
+              25
+            ]
+          }
+        },
+        "detail": {
+          "field": "state",
+          "type": "nominal"
+        },
+        "color": {
+          "field": "grp",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "ACT",
+              "Other states"
+            ],
+            "range": [
+              "#c8452d",
+              "#8a959d"
+            ]
+          },
+          "legend": {
+            "title": null,
+            "orient": "top",
+            "symbolType": "stroke",
+            "symbolStrokeWidth": 3
+          }
+        },
+        "strokeWidth": {
+          "field": "grp",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "ACT",
+              "Other states"
+            ],
+            "range": [
+              3,
+              1.6
+            ]
+          },
+          "legend": null
+        },
+        "order": {
+          "field": "grp",
+          "type": "nominal",
+          "sort": "descending"
+        },
+        "tooltip": [
+          {
+            "field": "state",
+            "type": "nominal",
+            "title": "State"
+          },
+          {
+            "field": "d",
+            "type": "temporal",
+            "title": "Month",
+            "format": "%b %Y"
+          },
+          {
+            "field": "ict_share_pct",
+            "type": "quantitative",
+            "title": "ICT share of job ads (%)",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "d": "2006-08-01",
+            "y": 24.4,
+            "t": "ACT peak: 24.4% (Aug 2006)"
+          }
+        ]
+      },
+      "transform": [
+        {
+          "calculate": "toDate(datum.d)",
+          "as": "dd"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 10,
+        "dy": 2,
+        "fontSize": 14,
+        "fontWeight": 700,
+        "color": "#a8321d"
+      },
+      "encoding": {
+        "x": {
+          "field": "dd",
+          "type": "temporal"
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "d": "2026-08-01",
+            "y": 10.3,
+            "t": "ACT now: 10.3%"
+          }
+        ]
+      },
+      "transform": [
+        {
+          "calculate": "toDate(datum.d)",
+          "as": "dd"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dy": 22,
+        "fontSize": 14,
+        "fontWeight": 700,
+        "color": "#a8321d"
+      },
+      "encoding": {
+        "x": {
+          "field": "dd",
+          "type": "temporal"
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "d": "2026-08-01",
+            "y": 6.2,
+            "t": "Other states now: 1.3–3.5%"
+          }
+        ]
+      },
+      "transform": [
+        {
+          "calculate": "toDate(datum.d)",
+          "as": "dd"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dy": 0,
+        "fontSize": 13,
+        "fontWeight": 600,
+        "color": "#4b5862"
+      },
+      "encoding": {
+        "x": {
+          "field": "dd",
+          "type": "temporal"
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    }
+  ]
+}

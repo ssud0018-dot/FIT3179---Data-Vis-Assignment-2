@@ -1,0 +1,318 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Scatter plot of 48 occupation groups: size in January 2019 against percentage change in job ads to August 2026. ICT Professionals is the second-largest group and has the biggest fall.",
+  "width": "container",
+  "height": 380,
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding"
+  },
+  "data": {
+    "url": "data/occupation_groups_national.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "code": "string",
+        "occupation": "string",
+        "ads_2019_01": "number",
+        "ads_latest": "number",
+        "pct_change": "number",
+        "latest_month": "string"
+      }
+    }
+  },
+  "transform": [
+    {
+      "calculate": "datum.code === '26' ? 'ICT Professionals' : 'Other occupation groups'",
+      "as": "group"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "rule",
+        "color": "#1c2530",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "y": {
+          "datum": 0,
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "circle",
+        "size": 90,
+        "opacity": 0.9,
+        "stroke": "#ffffff",
+        "strokeWidth": 1.2
+      },
+      "encoding": {
+        "x": {
+          "field": "ads_2019_01",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              100,
+              20000
+            ],
+            "type": "log"
+          },
+          "axis": {
+            "title": "Job ads per month in January 2019 (log scale: each step is 10 times bigger)",
+            "values": [
+              100,
+              300,
+              1000,
+              3000,
+              10000
+            ],
+            "format": ",d",
+            "grid": true
+          }
+        },
+        "y": {
+          "field": "pct_change",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -70,
+              140
+            ]
+          },
+          "axis": {
+            "title": "Change in job ads, Jan 2019 → Aug 2026 (%)",
+            "values": [
+              -60,
+              -40,
+              -20,
+              0,
+              20,
+              40,
+              60,
+              80,
+              100,
+              120,
+              140
+            ],
+            "labelExpr": "datum.value > 0 ? '+' + datum.value : replace(toString(datum.value), '-', '−')"
+          }
+        },
+        "color": {
+          "field": "group",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "ICT Professionals",
+              "Other occupation groups"
+            ],
+            "range": [
+              "#c8452d",
+              "#8a959d"
+            ]
+          },
+          "legend": {
+            "title": null,
+            "orient": "top",
+            "symbolType": "circle"
+          }
+        },
+        "order": {
+          "field": "group",
+          "type": "nominal",
+          "sort": "ascending"
+        },
+        "tooltip": [
+          {
+            "field": "occupation",
+            "type": "nominal",
+            "title": "Occupation group"
+          },
+          {
+            "field": "ads_2019_01",
+            "type": "quantitative",
+            "title": "Job ads, Jan 2019",
+            "format": ",.0f"
+          },
+          {
+            "field": "ads_latest",
+            "type": "quantitative",
+            "title": "Job ads, Aug 2026",
+            "format": ",.0f"
+          },
+          {
+            "field": "pct_change",
+            "type": "quantitative",
+            "title": "Change (%)",
+            "format": "+.1f"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.code === '26'"
+        },
+        {
+          "calculate": "'ICT Professionals: second-biggest group, biggest fall'",
+          "as": "t"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -12,
+        "dy": -2,
+        "fontSize": 14,
+        "fontWeight": 700,
+        "color": "#a8321d"
+      },
+      "encoding": {
+        "x": {
+          "field": "ads_2019_01",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              100,
+              20000
+            ],
+            "type": "log"
+          },
+          "axis": {
+            "title": "Job ads per month in January 2019 (log scale: each step is 10 times bigger)",
+            "values": [
+              100,
+              300,
+              1000,
+              3000,
+              10000
+            ],
+            "format": ",d",
+            "grid": true
+          }
+        },
+        "y": {
+          "field": "pct_change",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -70,
+              140
+            ]
+          },
+          "axis": {
+            "title": "Change in job ads, Jan 2019 → Aug 2026 (%)",
+            "values": [
+              -60,
+              -40,
+              -20,
+              0,
+              20,
+              40,
+              60,
+              80,
+              100,
+              120,
+              140
+            ],
+            "labelExpr": "datum.value > 0 ? '+' + datum.value : replace(toString(datum.value), '-', '−')"
+          }
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "x": 115,
+            "y": -62,
+            "t": "Fewer ads than in 2019 (below the line)"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "fontSize": 13,
+        "fontStyle": "italic",
+        "color": "#5b6770"
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              100,
+              20000
+            ],
+            "type": "log"
+          }
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -70,
+              140
+            ]
+          }
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "x": 115,
+            "y": 132,
+            "t": "More ads than in 2019 (above the line)"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "fontSize": 13,
+        "fontStyle": "italic",
+        "color": "#5b6770"
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              100,
+              20000
+            ],
+            "type": "log"
+          }
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -70,
+              140
+            ]
+          }
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    }
+  ]
+}

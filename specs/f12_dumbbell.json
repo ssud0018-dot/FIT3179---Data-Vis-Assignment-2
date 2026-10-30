@@ -1,0 +1,321 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Dumbbell chart comparing ICT Professional share of all job ads in each capital city, January 2019 and August 2026.",
+  "width": "container",
+  "height": {
+    "step": 34
+  },
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding"
+  },
+  "data": {
+    "url": "data/capitals.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "city": "string",
+        "region": "string",
+        "state": "string",
+        "lat": "number",
+        "lon": "number",
+        "ict_ads_2019": "number",
+        "ict_ads_latest": "number",
+        "pct_change": "number",
+        "ict_share_latest_pct": "number",
+        "ict_share_2019_pct": "number"
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rule",
+        "color": "#b3bdc3",
+        "strokeWidth": 3.5
+      },
+      "encoding": {
+        "y": {
+          "field": "city",
+          "type": "nominal",
+          "sort": {
+            "field": "ict_share_2019_pct",
+            "order": "descending"
+          },
+          "axis": {
+            "title": null,
+            "ticks": false,
+            "domain": false,
+            "labelFontSize": 14,
+            "labelColor": "#1c2530"
+          }
+        },
+        "x": {
+          "field": "ict_share_2019_pct",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              19
+            ]
+          },
+          "axis": {
+            "title": "ICT share of all job ads in the city (%)",
+            "values": [
+              0,
+              2,
+              4,
+              6,
+              8,
+              10,
+              12,
+              14,
+              16,
+              18
+            ]
+          }
+        },
+        "x2": {
+          "field": "ict_share_latest_pct"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "fold": [
+            "ict_share_2019_pct",
+            "ict_share_latest_pct"
+          ],
+          "as": [
+            "when",
+            "share"
+          ]
+        },
+        {
+          "calculate": "datum.when === 'ict_share_2019_pct' ? 'Jan 2019' : 'Aug 2026'",
+          "as": "period"
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "size": 150,
+        "opacity": 1,
+        "stroke": "#ffffff",
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "y": {
+          "field": "city",
+          "type": "nominal",
+          "sort": {
+            "field": "ict_share_2019_pct",
+            "order": "descending"
+          },
+          "axis": {
+            "title": null,
+            "ticks": false,
+            "domain": false,
+            "labelFontSize": 14,
+            "labelColor": "#1c2530"
+          }
+        },
+        "x": {
+          "field": "share",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              19
+            ]
+          },
+          "axis": {
+            "title": "ICT share of all job ads in the city (%)",
+            "values": [
+              0,
+              2,
+              4,
+              6,
+              8,
+              10,
+              12,
+              14,
+              16,
+              18
+            ]
+          }
+        },
+        "color": {
+          "field": "period",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Jan 2019",
+              "Aug 2026"
+            ],
+            "range": [
+              "#5f7886",
+              "#c8452d"
+            ]
+          },
+          "legend": {
+            "title": null,
+            "orient": "top",
+            "symbolType": "circle"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "region",
+            "type": "nominal",
+            "title": "Region"
+          },
+          {
+            "field": "period",
+            "type": "nominal",
+            "title": "Period"
+          },
+          {
+            "field": "share",
+            "type": "quantitative",
+            "title": "ICT share of job ads (%)",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -12,
+        "fontSize": 13,
+        "fontWeight": 700,
+        "color": "#a8321d"
+      },
+      "encoding": {
+        "y": {
+          "field": "city",
+          "type": "nominal",
+          "sort": {
+            "field": "ict_share_2019_pct",
+            "order": "descending"
+          },
+          "axis": {
+            "title": null,
+            "ticks": false,
+            "domain": false,
+            "labelFontSize": 14,
+            "labelColor": "#1c2530"
+          }
+        },
+        "x": {
+          "field": "ict_share_latest_pct",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              19
+            ]
+          }
+        },
+        "text": {
+          "field": "ict_share_latest_pct",
+          "type": "quantitative",
+          "format": ".1f"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 12,
+        "fontSize": 13,
+        "fontWeight": 700,
+        "color": "#3f5563"
+      },
+      "encoding": {
+        "y": {
+          "field": "city",
+          "type": "nominal",
+          "sort": {
+            "field": "ict_share_2019_pct",
+            "order": "descending"
+          },
+          "axis": {
+            "title": null,
+            "ticks": false,
+            "domain": false,
+            "labelFontSize": 14,
+            "labelColor": "#1c2530"
+          }
+        },
+        "x": {
+          "field": "ict_share_2019_pct",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              19
+            ]
+          }
+        },
+        "text": {
+          "field": "ict_share_2019_pct",
+          "type": "quantitative",
+          "format": ".1f"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.city === 'Canberra'"
+        },
+        {
+          "calculate": "'Still the highest, but down from 16.4%'",
+          "as": "t"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -52,
+        "fontSize": 13,
+        "fontStyle": "italic",
+        "color": "#5b6770"
+      },
+      "encoding": {
+        "y": {
+          "field": "city",
+          "type": "nominal",
+          "sort": {
+            "field": "ict_share_2019_pct",
+            "order": "descending"
+          },
+          "axis": {
+            "title": null,
+            "ticks": false,
+            "domain": false,
+            "labelFontSize": 14,
+            "labelColor": "#1c2530"
+          }
+        },
+        "x": {
+          "field": "ict_share_latest_pct",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              19
+            ]
+          }
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    }
+  ]
+}

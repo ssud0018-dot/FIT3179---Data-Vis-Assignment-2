@@ -1,0 +1,387 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Line chart of ICT job ads in each state since January 2019 (January 2019 = 100). Six states end well below the starting level; Tasmania and the Northern Territory end slightly above.",
+  "width": "container",
+  "height": 380,
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding"
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "data/ict_state_index.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "date": "string",
+            "state": "string",
+            "ict_index_2019": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "calculate": "toDate(datum.date)",
+          "as": "d"
+        },
+        {
+          "calculate": "datum.state === 'NT' || datum.state === 'TAS' ? 'Above Jan 2019' : 'Below Jan 2019'",
+          "as": "dir"
+        }
+      ],
+      "mark": {
+        "type": "line",
+        "strokeWidth": 2,
+        "opacity": 0.9
+      },
+      "encoding": {
+        "x": {
+          "field": "d",
+          "type": "temporal",
+          "scale": {
+            "domain": [
+              {
+                "year": 2019,
+                "month": 0,
+                "date": 1
+              },
+              {
+                "year": 2027,
+                "month": 1,
+                "date": 15
+              }
+            ]
+          },
+          "axis": {
+            "title": null,
+            "format": "%Y",
+            "tickCount": {
+              "interval": "year",
+              "step": 1
+            },
+            "grid": false
+          }
+        },
+        "y": {
+          "field": "ict_index_2019",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              200
+            ]
+          },
+          "axis": {
+            "title": "ICT job ads (Jan 2019 = 100)",
+            "values": [
+              0,
+              25,
+              50,
+              75,
+              100,
+              125,
+              150,
+              175,
+              200
+            ]
+          }
+        },
+        "detail": {
+          "field": "state",
+          "type": "nominal"
+        },
+        "color": {
+          "field": "dir",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Below Jan 2019",
+              "Above Jan 2019"
+            ],
+            "range": [
+              "#c8452d",
+              "#2f7f90"
+            ]
+          },
+          "legend": {
+            "title": null,
+            "orient": "top",
+            "symbolType": "stroke",
+            "symbolStrokeWidth": 3,
+            "labelExpr": "datum.value === 'Below Jan 2019' ? 'Below Jan 2019 level (6 states)' : 'Above Jan 2019 level (NT, TAS)'",
+            "labelLimit": 320
+          }
+        },
+        "tooltip": [
+          {
+            "field": "state",
+            "type": "nominal",
+            "title": "State"
+          },
+          {
+            "field": "d",
+            "type": "temporal",
+            "title": "Month",
+            "format": "%b %Y"
+          },
+          {
+            "field": "ict_index_2019",
+            "type": "quantitative",
+            "title": "ICT job ads (Jan 2019 = 100)",
+            "format": ".0f"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "d": "2019-01-01",
+            "y": 100
+          }
+        ]
+      },
+      "transform": [
+        {
+          "calculate": "toDate(datum.d)",
+          "as": "dd"
+        }
+      ],
+      "mark": {
+        "type": "rule",
+        "color": "#4b5862",
+        "strokeDash": [
+          4,
+          4
+        ],
+        "strokeWidth": 1.2
+      },
+      "encoding": {
+        "y": {
+          "field": "y",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "state": "NSW",
+            "date": "2026-08-01",
+            "ly": 25,
+            "val": 43.8,
+            "lbl": "NSW −56%",
+            "dir": "Below Jan 2019"
+          },
+          {
+            "state": "VIC",
+            "date": "2026-08-01",
+            "ly": 36,
+            "val": 47.0,
+            "lbl": "VIC −53%",
+            "dir": "Below Jan 2019"
+          },
+          {
+            "state": "QLD",
+            "date": "2026-08-01",
+            "ly": 58,
+            "val": 61.4,
+            "lbl": "QLD −39%",
+            "dir": "Below Jan 2019"
+          },
+          {
+            "state": "SA",
+            "date": "2026-08-01",
+            "ly": 80,
+            "val": 76.1,
+            "lbl": "SA −24%",
+            "dir": "Below Jan 2019"
+          },
+          {
+            "state": "WA",
+            "date": "2026-08-01",
+            "ly": 69,
+            "val": 65.7,
+            "lbl": "WA −34%",
+            "dir": "Below Jan 2019"
+          },
+          {
+            "state": "TAS",
+            "date": "2026-08-01",
+            "ly": 116,
+            "val": 107.8,
+            "lbl": "TAS +8%",
+            "dir": "Above Jan 2019"
+          },
+          {
+            "state": "NT",
+            "date": "2026-08-01",
+            "ly": 99,
+            "val": 101.0,
+            "lbl": "NT +1%",
+            "dir": "Above Jan 2019"
+          },
+          {
+            "state": "ACT",
+            "date": "2026-08-01",
+            "ly": 47,
+            "val": 53.4,
+            "lbl": "ACT −47%",
+            "dir": "Below Jan 2019"
+          }
+        ]
+      },
+      "transform": [
+        {
+          "calculate": "toDate(datum.date)",
+          "as": "d"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 8,
+        "fontSize": 14,
+        "fontWeight": 700
+      },
+      "encoding": {
+        "x": {
+          "field": "d",
+          "type": "temporal"
+        },
+        "y": {
+          "field": "ly",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "lbl"
+        },
+        "color": {
+          "field": "dir",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Below Jan 2019",
+              "Above Jan 2019"
+            ],
+            "range": [
+              "#a8321d",
+              "#1f6677"
+            ]
+          },
+          "legend": null
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "state": "NSW",
+            "date": "2026-08-01",
+            "ly": 25,
+            "val": 43.8,
+            "lbl": "NSW −56%",
+            "dir": "Below Jan 2019"
+          },
+          {
+            "state": "VIC",
+            "date": "2026-08-01",
+            "ly": 36,
+            "val": 47.0,
+            "lbl": "VIC −53%",
+            "dir": "Below Jan 2019"
+          },
+          {
+            "state": "QLD",
+            "date": "2026-08-01",
+            "ly": 58,
+            "val": 61.4,
+            "lbl": "QLD −39%",
+            "dir": "Below Jan 2019"
+          },
+          {
+            "state": "SA",
+            "date": "2026-08-01",
+            "ly": 80,
+            "val": 76.1,
+            "lbl": "SA −24%",
+            "dir": "Below Jan 2019"
+          },
+          {
+            "state": "WA",
+            "date": "2026-08-01",
+            "ly": 69,
+            "val": 65.7,
+            "lbl": "WA −34%",
+            "dir": "Below Jan 2019"
+          },
+          {
+            "state": "TAS",
+            "date": "2026-08-01",
+            "ly": 116,
+            "val": 107.8,
+            "lbl": "TAS +8%",
+            "dir": "Above Jan 2019"
+          },
+          {
+            "state": "NT",
+            "date": "2026-08-01",
+            "ly": 99,
+            "val": 101.0,
+            "lbl": "NT +1%",
+            "dir": "Above Jan 2019"
+          },
+          {
+            "state": "ACT",
+            "date": "2026-08-01",
+            "ly": 47,
+            "val": 53.4,
+            "lbl": "ACT −47%",
+            "dir": "Below Jan 2019"
+          }
+        ]
+      },
+      "transform": [
+        {
+          "calculate": "toDate(datum.date)",
+          "as": "d"
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "size": 60,
+        "stroke": "#ffffff",
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "x": {
+          "field": "d",
+          "type": "temporal"
+        },
+        "y": {
+          "field": "val",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "dir",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Below Jan 2019",
+              "Above Jan 2019"
+            ],
+            "range": [
+              "#c8452d",
+              "#2f7f90"
+            ]
+          },
+          "legend": null
+        }
+      }
+    }
+  ]
+}

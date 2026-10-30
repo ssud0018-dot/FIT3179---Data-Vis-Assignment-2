@@ -1,0 +1,259 @@
+osca_code,occupation,year,status,years_in_shortage,n_short_year
+113131,Chief Information Officer,2021,No shortage,0,13
+113131,Chief Information Officer,2022,No shortage,0,23
+113131,Chief Information Officer,2023,No shortage,0,21
+113131,Chief Information Officer,2024,No shortage,0,16
+113131,Chief Information Officer,2025,No shortage,0,7
+113131,Chief Information Officer,2026,No shortage,0,8
+113132,Chief Information Security Officer,2021,No shortage,0,13
+113132,Chief Information Security Officer,2022,No shortage,0,23
+113132,Chief Information Security Officer,2023,No shortage,0,21
+113132,Chief Information Security Officer,2024,No shortage,0,16
+113132,Chief Information Security Officer,2025,No shortage,0,7
+113132,Chief Information Security Officer,2026,No shortage,0,8
+113231,ICT Operations Manager,2021,Not assessed,0,13
+113231,ICT Operations Manager,2022,No shortage,0,23
+113231,ICT Operations Manager,2023,No shortage,0,21
+113231,ICT Operations Manager,2024,No shortage,0,16
+113231,ICT Operations Manager,2025,No shortage,0,7
+113231,ICT Operations Manager,2026,No shortage,0,8
+113232,ICT Project Manager,2021,Shortage,1,13
+113232,ICT Project Manager,2022,No shortage,1,23
+113232,ICT Project Manager,2023,No shortage,1,21
+113232,ICT Project Manager,2024,No shortage,1,16
+113232,ICT Project Manager,2025,No shortage,1,7
+113232,ICT Project Manager,2026,No shortage,1,8
+113233,ICT Service Delivery Manager,2021,Not assessed,0,13
+113233,ICT Service Delivery Manager,2022,No shortage,0,23
+113233,ICT Service Delivery Manager,2023,No shortage,0,21
+113233,ICT Service Delivery Manager,2024,No shortage,0,16
+113233,ICT Service Delivery Manager,2025,No shortage,0,7
+113233,ICT Service Delivery Manager,2026,No shortage,0,8
+113299,ICT Managers nec,2021,Not assessed,0,13
+113299,ICT Managers nec,2022,No shortage,0,23
+113299,ICT Managers nec,2023,No shortage,0,21
+113299,ICT Managers nec,2024,No shortage,0,16
+113299,ICT Managers nec,2025,No shortage,0,7
+113299,ICT Managers nec,2026,No shortage,0,8
+223231,Data Analyst,2021,No shortage,0,13
+223231,Data Analyst,2022,No shortage,0,23
+223231,Data Analyst,2023,No shortage,0,21
+223231,Data Analyst,2024,No shortage,0,16
+223231,Data Analyst,2025,No shortage,0,7
+223231,Data Analyst,2026,No shortage,0,8
+223232,Data Architect,2021,Shortage,5,13
+223232,Data Architect,2022,Shortage,5,23
+223232,Data Architect,2023,Shortage,5,21
+223232,Data Architect,2024,Shortage,5,16
+223232,Data Architect,2025,No shortage,5,7
+223232,Data Architect,2026,Shortage,5,8
+223233,Data Engineer,2021,Shortage,5,13
+223233,Data Engineer,2022,Shortage,5,23
+223233,Data Engineer,2023,Shortage,5,21
+223233,Data Engineer,2024,Shortage,5,16
+223233,Data Engineer,2025,No shortage,5,7
+223233,Data Engineer,2026,Shortage,5,8
+223234,Data Scientist,2021,No shortage,0,13
+223234,Data Scientist,2022,No shortage,0,23
+223234,Data Scientist,2023,No shortage,0,21
+223234,Data Scientist,2024,No shortage,0,16
+223234,Data Scientist,2025,No shortage,0,7
+223234,Data Scientist,2026,No shortage,0,8
+271131,Cyber Governance Risk and Compliance Specialist,2021,Shortage,6,13
+271131,Cyber Governance Risk and Compliance Specialist,2022,Shortage,6,23
+271131,Cyber Governance Risk and Compliance Specialist,2023,Shortage,6,21
+271131,Cyber Governance Risk and Compliance Specialist,2024,Shortage,6,16
+271131,Cyber Governance Risk and Compliance Specialist,2025,Shortage,6,7
+271131,Cyber Governance Risk and Compliance Specialist,2026,Shortage,6,8
+271132,Cyber Security Advice and Assessment Specialist,2021,Shortage,5,13
+271132,Cyber Security Advice and Assessment Specialist,2022,Shortage,5,23
+271132,Cyber Security Advice and Assessment Specialist,2023,Shortage,5,21
+271132,Cyber Security Advice and Assessment Specialist,2024,Shortage,5,16
+271132,Cyber Security Advice and Assessment Specialist,2025,No shortage,5,7
+271132,Cyber Security Advice and Assessment Specialist,2026,Shortage,5,8
+271133,Cyber Security Analyst,2021,Shortage,4,13
+271133,Cyber Security Analyst,2022,Shortage,4,23
+271133,Cyber Security Analyst,2023,Shortage,4,21
+271133,Cyber Security Analyst,2024,Shortage,4,16
+271133,Cyber Security Analyst,2025,No shortage,4,7
+271133,Cyber Security Analyst,2026,No shortage,4,8
+271134,Cyber Security Architect,2021,Shortage,6,13
+271134,Cyber Security Architect,2022,Shortage,6,23
+271134,Cyber Security Architect,2023,Shortage,6,21
+271134,Cyber Security Architect,2024,Shortage,6,16
+271134,Cyber Security Architect,2025,Shortage,6,7
+271134,Cyber Security Architect,2026,Shortage,6,8
+271135,Cyber Security Engineer,2021,Shortage,5,13
+271135,Cyber Security Engineer,2022,Shortage,5,23
+271135,Cyber Security Engineer,2023,Shortage,5,21
+271135,Cyber Security Engineer,2024,Shortage,5,16
+271135,Cyber Security Engineer,2025,Shortage,5,7
+271135,Cyber Security Engineer,2026,No shortage,5,8
+271136,Cyber Security Operations Coordinator,2021,Shortage,5,13
+271136,Cyber Security Operations Coordinator,2022,Shortage,5,23
+271136,Cyber Security Operations Coordinator,2023,Shortage,5,21
+271136,Cyber Security Operations Coordinator,2024,Shortage,5,16
+271136,Cyber Security Operations Coordinator,2025,Shortage,5,7
+271136,Cyber Security Operations Coordinator,2026,No shortage,5,8
+271137,Penetration Tester,2021,No shortage,4,13
+271137,Penetration Tester,2022,Shortage,4,23
+271137,Penetration Tester,2023,Shortage,4,21
+271137,Penetration Tester,2024,Shortage,4,16
+271137,Penetration Tester,2025,No shortage,4,7
+271137,Penetration Tester,2026,Shortage,4,8
+271231,Database Administrator,2021,No shortage,1,13
+271231,Database Administrator,2022,Shortage,1,23
+271231,Database Administrator,2023,No shortage,1,21
+271231,Database Administrator,2024,No shortage,1,16
+271231,Database Administrator,2025,No shortage,1,7
+271231,Database Administrator,2026,No shortage,1,8
+271232,Systems Administrator,2021,No shortage,0,13
+271232,Systems Administrator,2022,No shortage,0,23
+271232,Systems Administrator,2023,No shortage,0,21
+271232,Systems Administrator,2024,No shortage,0,16
+271232,Systems Administrator,2025,No shortage,0,7
+271232,Systems Administrator,2026,No shortage,0,8
+272131,ICT Network and Systems Engineer,2021,No shortage,2,13
+272131,ICT Network and Systems Engineer,2022,Shortage,2,23
+272131,ICT Network and Systems Engineer,2023,Shortage,2,21
+272131,ICT Network and Systems Engineer,2024,No shortage,2,16
+272131,ICT Network and Systems Engineer,2025,No shortage,2,7
+272131,ICT Network and Systems Engineer,2026,No shortage,2,8
+272132,Network Administrator,2021,No shortage,2,13
+272132,Network Administrator,2022,Shortage,2,23
+272132,Network Administrator,2023,Shortage,2,21
+272132,Network Administrator,2024,No shortage,2,16
+272132,Network Administrator,2025,No shortage,2,7
+272132,Network Administrator,2026,No shortage,2,8
+272133,Network Architect,2021,No shortage,3,13
+272133,Network Architect,2022,Shortage,3,23
+272133,Network Architect,2023,Shortage,3,21
+272133,Network Architect,2024,Shortage,3,16
+272133,Network Architect,2025,No shortage,3,7
+272133,Network Architect,2026,No shortage,3,8
+272231,ICT Quality Assurance Engineer,2021,No shortage,3,13
+272231,ICT Quality Assurance Engineer,2022,Shortage,3,23
+272231,ICT Quality Assurance Engineer,2023,Shortage,3,21
+272231,ICT Quality Assurance Engineer,2024,Shortage,3,16
+272231,ICT Quality Assurance Engineer,2025,No shortage,3,7
+272231,ICT Quality Assurance Engineer,2026,No shortage,3,8
+272232,ICT Support Engineer,2021,No shortage,0,13
+272232,ICT Support Engineer,2022,No shortage,0,23
+272232,ICT Support Engineer,2023,No shortage,0,21
+272232,ICT Support Engineer,2024,No shortage,0,16
+272232,ICT Support Engineer,2025,No shortage,0,7
+272232,ICT Support Engineer,2026,No shortage,0,8
+272233,ICT Test Analyst,2021,No shortage,4,13
+272233,ICT Test Analyst,2022,Shortage,4,23
+272233,ICT Test Analyst,2023,Shortage,4,21
+272233,ICT Test Analyst,2024,Shortage,4,16
+272233,ICT Test Analyst,2025,Shortage,4,7
+272233,ICT Test Analyst,2026,No shortage,4,8
+272331,Telecommunications Engineer,2021,No shortage,0,13
+272331,Telecommunications Engineer,2022,No shortage,0,23
+272331,Telecommunications Engineer,2023,No shortage,0,21
+272331,Telecommunications Engineer,2024,No shortage,0,16
+272331,Telecommunications Engineer,2025,No shortage,0,7
+272331,Telecommunications Engineer,2026,No shortage,0,8
+273131,Digital Game Developer,2021,No shortage,1,13
+273131,Digital Game Developer,2022,No shortage,1,23
+273131,Digital Game Developer,2023,Shortage,1,21
+273131,Digital Game Developer,2024,No shortage,1,16
+273131,Digital Game Developer,2025,No shortage,1,7
+273131,Digital Game Developer,2026,No shortage,1,8
+273132,Web Developer,2021,No shortage,2,13
+273132,Web Developer,2022,Shortage,2,23
+273132,Web Developer,2023,Shortage,2,21
+273132,Web Developer,2024,No shortage,2,16
+273132,Web Developer,2025,No shortage,2,7
+273132,Web Developer,2026,No shortage,2,8
+273231,Cloud Architect,2021,No shortage,1,13
+273231,Cloud Architect,2022,Shortage,1,23
+273231,Cloud Architect,2023,No shortage,1,21
+273231,Cloud Architect,2024,No shortage,1,16
+273231,Cloud Architect,2025,No shortage,1,7
+273231,Cloud Architect,2026,No shortage,1,8
+273232,ICT Business Analyst,2021,No shortage,1,13
+273232,ICT Business Analyst,2022,Shortage,1,23
+273232,ICT Business Analyst,2023,No shortage,1,21
+273232,ICT Business Analyst,2024,No shortage,1,16
+273232,ICT Business Analyst,2025,No shortage,1,7
+273232,ICT Business Analyst,2026,No shortage,1,8
+273233,Solution Architect,2021,Shortage,4,13
+273233,Solution Architect,2022,Shortage,4,23
+273233,Solution Architect,2023,Shortage,4,21
+273233,Solution Architect,2024,Shortage,4,16
+273233,Solution Architect,2025,No shortage,4,7
+273233,Solution Architect,2026,No shortage,4,8
+273234,Systems Analyst,2021,No shortage,2,13
+273234,Systems Analyst,2022,Shortage,2,23
+273234,Systems Analyst,2023,Shortage,2,21
+273234,Systems Analyst,2024,No shortage,2,16
+273234,Systems Analyst,2025,No shortage,2,7
+273234,Systems Analyst,2026,No shortage,2,8
+273331,Cloud Engineer,2021,Shortage,6,13
+273331,Cloud Engineer,2022,Shortage,6,23
+273331,Cloud Engineer,2023,Shortage,6,21
+273331,Cloud Engineer,2024,Shortage,6,16
+273331,Cloud Engineer,2025,Shortage,6,7
+273331,Cloud Engineer,2026,Shortage,6,8
+273332,DevOps Engineer,2021,Shortage,6,13
+273332,DevOps Engineer,2022,Shortage,6,23
+273332,DevOps Engineer,2023,Shortage,6,21
+273332,DevOps Engineer,2024,Shortage,6,16
+273332,DevOps Engineer,2025,Shortage,6,7
+273332,DevOps Engineer,2026,Shortage,6,8
+273333,Software Engineer,2021,Shortage,4,13
+273333,Software Engineer,2022,Shortage,4,23
+273333,Software Engineer,2023,Shortage,4,21
+273333,Software Engineer,2024,Shortage,4,16
+273333,Software Engineer,2025,No shortage,4,7
+273333,Software Engineer,2026,No shortage,4,8
+314131,ICT Hardware Technician,2021,No shortage,0,13
+314131,ICT Hardware Technician,2022,No shortage,0,23
+314131,ICT Hardware Technician,2023,No shortage,0,21
+314131,ICT Hardware Technician,2024,No shortage,0,16
+314131,ICT Hardware Technician,2025,No shortage,0,7
+314131,ICT Hardware Technician,2026,No shortage,0,8
+314132,Radiocommunications Technician,2021,No shortage,0,13
+314132,Radiocommunications Technician,2022,No shortage,0,23
+314132,Radiocommunications Technician,2023,No shortage,0,21
+314132,Radiocommunications Technician,2024,No shortage,0,16
+314132,Radiocommunications Technician,2025,No shortage,0,7
+314132,Radiocommunications Technician,2026,No shortage,0,8
+314133,Telecommunications Field Engineer,2021,No shortage,0,13
+314133,Telecommunications Field Engineer,2022,No shortage,0,23
+314133,Telecommunications Field Engineer,2023,No shortage,0,21
+314133,Telecommunications Field Engineer,2024,No shortage,0,16
+314133,Telecommunications Field Engineer,2025,No shortage,0,7
+314133,Telecommunications Field Engineer,2026,No shortage,0,8
+314134,Telecommunications Network Designer,2021,No shortage,0,13
+314134,Telecommunications Network Designer,2022,No shortage,0,23
+314134,Telecommunications Network Designer,2023,No shortage,0,21
+314134,Telecommunications Network Designer,2024,No shortage,0,16
+314134,Telecommunications Network Designer,2025,No shortage,0,7
+314134,Telecommunications Network Designer,2026,No shortage,0,8
+314135,Telecommunications Technical Officer or Technologist,2021,No shortage,0,13
+314135,Telecommunications Technical Officer or Technologist,2022,No shortage,0,23
+314135,Telecommunications Technical Officer or Technologist,2023,No shortage,0,21
+314135,Telecommunications Technical Officer or Technologist,2024,No shortage,0,16
+314135,Telecommunications Technical Officer or Technologist,2025,No shortage,0,7
+314135,Telecommunications Technical Officer or Technologist,2026,No shortage,0,8
+314136,Web Administrator,2021,No shortage,0,13
+314136,Web Administrator,2022,No shortage,0,23
+314136,Web Administrator,2023,No shortage,0,21
+314136,Web Administrator,2024,No shortage,0,16
+314136,Web Administrator,2025,No shortage,0,7
+314136,Web Administrator,2026,No shortage,0,8
+314199,ICT and Telecommunications Technicians nec,2021,Not assessed,0,13
+314199,ICT and Telecommunications Technicians nec,2022,No shortage,0,23
+314199,ICT and Telecommunications Technicians nec,2023,No shortage,0,21
+314199,ICT and Telecommunications Technicians nec,2024,No shortage,0,16
+314199,ICT and Telecommunications Technicians nec,2025,No shortage,0,7
+314199,ICT and Telecommunications Technicians nec,2026,No shortage,0,8
+314231,ICT Customer Support Officer,2021,No shortage,0,13
+314231,ICT Customer Support Officer,2022,No shortage,0,23
+314231,ICT Customer Support Officer,2023,No shortage,0,21
+314231,ICT Customer Support Officer,2024,No shortage,0,16
+314231,ICT Customer Support Officer,2025,No shortage,0,7
+314231,ICT Customer Support Officer,2026,No shortage,0,8

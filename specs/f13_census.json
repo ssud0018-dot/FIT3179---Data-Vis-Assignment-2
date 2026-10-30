@@ -1,0 +1,243 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Bar chart of the percentage growth in the number of workers in ICT occupations between the 2016 and 2021 Censuses.",
+  "width": "container",
+  "height": {
+    "step": 44
+  },
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding"
+  },
+  "data": {
+    "url": "data/census_ict_occupations.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "occupation": "string",
+        "workers_2016": "number",
+        "workers_2021": "number",
+        "pct_change": "number",
+        "label": "string",
+        "pct_label": "string"
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "color": "#2f7f90",
+        "cornerRadiusEnd": 4,
+        "height": {
+          "band": 0.62
+        }
+      },
+      "encoding": {
+        "y": {
+          "field": "label",
+          "type": "nominal",
+          "sort": [
+            "ICT Support and Test Engineers",
+            "Software and Applications Programmers",
+            "ICT Business and Systems Analysts",
+            "Database and Systems Administrators,|and ICT Security Specialists",
+            "ICT Managers"
+          ],
+          "axis": {
+            "title": null,
+            "ticks": false,
+            "domain": false,
+            "labelLimit": 340,
+            "labelFontSize": 14,
+            "labelColor": "#1c2530",
+            "labelLineHeight": 16,
+            "labelExpr": "split(datum.label, '|')"
+          }
+        },
+        "x": {
+          "field": "pct_change",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              70
+            ]
+          },
+          "axis": {
+            "title": "Change in number of workers, 2016 → 2021 (%)",
+            "format": "d",
+            "values": [
+              0,
+              10,
+              20,
+              30,
+              40,
+              50,
+              60,
+              70
+            ]
+          }
+        },
+        "tooltip": [
+          {
+            "field": "occupation",
+            "type": "nominal",
+            "title": "Occupation"
+          },
+          {
+            "field": "workers_2016",
+            "type": "quantitative",
+            "title": "Workers, 2016",
+            "format": ",d"
+          },
+          {
+            "field": "workers_2021",
+            "type": "quantitative",
+            "title": "Workers, 2021",
+            "format": ",d"
+          },
+          {
+            "field": "pct_change",
+            "type": "quantitative",
+            "title": "Change (%)",
+            "format": "+.1f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 6,
+        "fontSize": 15,
+        "fontWeight": 700,
+        "color": "#1c2530"
+      },
+      "encoding": {
+        "y": {
+          "field": "label",
+          "type": "nominal",
+          "sort": [
+            "ICT Support and Test Engineers",
+            "Software and Applications Programmers",
+            "ICT Business and Systems Analysts",
+            "Database and Systems Administrators,|and ICT Security Specialists",
+            "ICT Managers"
+          ],
+          "axis": {
+            "title": null,
+            "ticks": false,
+            "domain": false,
+            "labelLimit": 340,
+            "labelFontSize": 14,
+            "labelColor": "#1c2530",
+            "labelLineHeight": 16,
+            "labelExpr": "split(datum.label, '|')"
+          }
+        },
+        "x": {
+          "field": "pct_change",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              70
+            ]
+          },
+          "axis": {
+            "title": "Change in number of workers, 2016 → 2021 (%)",
+            "format": "d",
+            "values": [
+              0,
+              10,
+              20,
+              30,
+              40,
+              50,
+              60,
+              70
+            ]
+          }
+        },
+        "text": {
+          "field": "pct_label"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.occupation === 'ICT Managers'"
+        },
+        {
+          "calculate": "datum.workers_2016 / 1000",
+          "as": "a"
+        },
+        {
+          "calculate": "'Largest group: ' + format(datum.workers_2021,',') + ' workers in 2021'",
+          "as": "t"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 62,
+        "fontSize": 13,
+        "fontStyle": "italic",
+        "color": "#5b6770"
+      },
+      "encoding": {
+        "y": {
+          "field": "label",
+          "type": "nominal",
+          "sort": [
+            "ICT Support and Test Engineers",
+            "Software and Applications Programmers",
+            "ICT Business and Systems Analysts",
+            "Database and Systems Administrators,|and ICT Security Specialists",
+            "ICT Managers"
+          ],
+          "axis": {
+            "title": null,
+            "ticks": false,
+            "domain": false,
+            "labelLimit": 340,
+            "labelFontSize": 14,
+            "labelColor": "#1c2530",
+            "labelLineHeight": 16,
+            "labelExpr": "split(datum.label, '|')"
+          }
+        },
+        "x": {
+          "field": "pct_change",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              70
+            ]
+          },
+          "axis": {
+            "title": "Change in number of workers, 2016 → 2021 (%)",
+            "format": "d",
+            "values": [
+              0,
+              10,
+              20,
+              30,
+              40,
+              50,
+              60,
+              70
+            ]
+          }
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    }
+  ]
+}
