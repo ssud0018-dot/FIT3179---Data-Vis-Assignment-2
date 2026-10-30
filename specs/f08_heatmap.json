@@ -1,0 +1,289 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Heatmap of ICT Professional job ads as a share of all job ads, by state and year, 2019 to 2026. The ACT's 2020 peak is outlined.",
+  "width": "container",
+  "height": {
+    "step": 40
+  },
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding"
+  },
+  "data": {
+    "url": "data/ict_state_monthly.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "date": "string",
+        "state": "string",
+        "ict_ads": "number",
+        "all_ads": "number",
+        "ict_share_pct": "number"
+      }
+    }
+  },
+  "transform": [
+    {
+      "filter": "datum.state !== 'AUST'"
+    },
+    {
+      "calculate": "toNumber(slice(datum.date,0,4))",
+      "as": "year"
+    },
+    {
+      "filter": "datum.year >= 2019"
+    },
+    {
+      "aggregate": [
+        {
+          "op": "sum",
+          "field": "ict_ads",
+          "as": "ict"
+        },
+        {
+          "op": "sum",
+          "field": "all_ads",
+          "as": "all"
+        }
+      ],
+      "groupby": [
+        "state",
+        "year"
+      ]
+    },
+    {
+      "calculate": "datum.ict / datum.all * 100",
+      "as": "share"
+    },
+    {
+      "calculate": "round(datum.share * 10) / 10 < 1.5 ? 'Under 1.5%' : round(datum.share * 10) / 10 < 2.5 ? '1.5–2.5%' : round(datum.share * 10) / 10 < 4 ? '2.5–4%' : round(datum.share * 10) / 10 < 8 ? '4–8%' : 'Over 8%'",
+      "as": "bin"
+    },
+    {
+      "calculate": "toString(datum.year) + (datum.year === 2026 ? '*' : '')",
+      "as": "ylabel"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "rect",
+        "stroke": "#ffffff",
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "x": {
+          "field": "ylabel",
+          "type": "ordinal",
+          "sort": [
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025",
+            "2026*"
+          ],
+          "axis": {
+            "title": null,
+            "orient": "top",
+            "labelAngle": 0,
+            "ticks": false,
+            "domain": false,
+            "labelFontSize": 13
+          }
+        },
+        "y": {
+          "field": "state",
+          "type": "ordinal",
+          "sort": [
+            "ACT",
+            "VIC",
+            "NSW",
+            "SA",
+            "QLD",
+            "WA",
+            "TAS",
+            "NT"
+          ],
+          "axis": {
+            "title": null,
+            "ticks": false,
+            "domain": false,
+            "labelFontSize": 14,
+            "labelColor": "#1c2530"
+          }
+        },
+        "color": {
+          "field": "bin",
+          "type": "ordinal",
+          "scale": {
+            "domain": [
+              "Under 1.5%",
+              "1.5–2.5%",
+              "2.5–4%",
+              "4–8%",
+              "Over 8%"
+            ],
+            "range": [
+              "#e3eff1",
+              "#b4d6db",
+              "#73b0ba",
+              "#2f7f90",
+              "#0b4455"
+            ]
+          },
+          "legend": {
+            "title": "ICT share of all job ads",
+            "symbolType": "square",
+            "symbolSize": 260,
+            "titleLimit": 340,
+            "orient": "bottom",
+            "direction": "horizontal"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "state",
+            "type": "nominal",
+            "title": "State"
+          },
+          {
+            "field": "ylabel",
+            "type": "nominal",
+            "title": "Year"
+          },
+          {
+            "field": "share",
+            "type": "quantitative",
+            "title": "ICT share of job ads (%)",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.state === 'ACT' && datum.year === 2020"
+        }
+      ],
+      "mark": {
+        "type": "rect",
+        "fill": null,
+        "stroke": "#1c2530",
+        "strokeWidth": 3.5
+      },
+      "encoding": {
+        "x": {
+          "field": "ylabel",
+          "type": "ordinal",
+          "sort": [
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025",
+            "2026*"
+          ],
+          "axis": {
+            "title": null,
+            "orient": "top",
+            "labelAngle": 0,
+            "ticks": false,
+            "domain": false,
+            "labelFontSize": 13
+          }
+        },
+        "y": {
+          "field": "state",
+          "type": "ordinal",
+          "sort": [
+            "ACT",
+            "VIC",
+            "NSW",
+            "SA",
+            "QLD",
+            "WA",
+            "TAS",
+            "NT"
+          ],
+          "axis": {
+            "title": null,
+            "ticks": false,
+            "domain": false,
+            "labelFontSize": 14,
+            "labelColor": "#1c2530"
+          }
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 14,
+        "fontWeight": 600
+      },
+      "encoding": {
+        "x": {
+          "field": "ylabel",
+          "type": "ordinal",
+          "sort": [
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025",
+            "2026*"
+          ],
+          "axis": {
+            "title": null,
+            "orient": "top",
+            "labelAngle": 0,
+            "ticks": false,
+            "domain": false,
+            "labelFontSize": 13
+          }
+        },
+        "y": {
+          "field": "state",
+          "type": "ordinal",
+          "sort": [
+            "ACT",
+            "VIC",
+            "NSW",
+            "SA",
+            "QLD",
+            "WA",
+            "TAS",
+            "NT"
+          ],
+          "axis": {
+            "title": null,
+            "ticks": false,
+            "domain": false,
+            "labelFontSize": 14,
+            "labelColor": "#1c2530"
+          }
+        },
+        "text": {
+          "field": "share",
+          "type": "quantitative",
+          "format": ".1f"
+        },
+        "color": {
+          "condition": {
+            "test": "datum.bin === '4–8%' || datum.bin === 'Over 8%'",
+            "value": "#ffffff"
+          },
+          "value": "#1c2530"
+        }
+      }
+    }
+  ]
+}

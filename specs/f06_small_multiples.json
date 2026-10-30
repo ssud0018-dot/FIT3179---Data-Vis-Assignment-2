@@ -1,0 +1,222 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Eight small line charts, one per state, showing ICT job ads since January 2019 (January 2019 = 100).",
+  "data": {
+    "url": "data/ict_state_index.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "date": "string",
+        "state": "string",
+        "ict_index_2019": "number"
+      }
+    }
+  },
+  "transform": [
+    {
+      "calculate": "toDate(datum.date)",
+      "as": "d"
+    },
+    {
+      "calculate": "100",
+      "as": "base"
+    },
+    {
+      "calculate": "190",
+      "as": "top"
+    },
+    {
+      "calculate": "datum.date === '2026-08-01' ? format(datum.ict_index_2019 - 100,'+.0f') + '%' : null",
+      "as": "endlbl"
+    }
+  ],
+  "columns": 4,
+  "facet": {
+    "field": "state",
+    "type": "nominal",
+    "sort": [
+      "NSW",
+      "VIC",
+      "ACT",
+      "QLD",
+      "WA",
+      "SA",
+      "NT",
+      "TAS"
+    ],
+    "header": {
+      "title": null,
+      "labelAnchor": "start",
+      "labelPadding": 4
+    }
+  },
+  "spec": {
+    "width": 135,
+    "height": 115,
+    "layer": [
+      {
+        "mark": {
+          "type": "area",
+          "color": "#c8452d",
+          "opacity": 0.13
+        },
+        "encoding": {
+          "x": {
+            "field": "d",
+            "type": "temporal",
+            "axis": {
+              "title": null,
+              "format": "%y",
+              "labelExpr": "'’' + timeFormat(datum.value,'%y')",
+              "values": [
+                {
+                  "year": 2019,
+                  "month": 1,
+                  "date": 1
+                },
+                {
+                  "year": 2022,
+                  "month": 1,
+                  "date": 1
+                },
+                {
+                  "year": 2025,
+                  "month": 1,
+                  "date": 1
+                }
+              ],
+              "grid": false
+            }
+          },
+          "y": {
+            "field": "ict_index_2019",
+            "type": "quantitative",
+            "scale": {
+              "domain": [
+                0,
+                200
+              ]
+            },
+            "axis": {
+              "title": "Jan 2019 = 100",
+              "values": [
+                0,
+                100,
+                200
+              ]
+            }
+          }
+        }
+      },
+      {
+        "mark": {
+          "type": "line",
+          "color": "#c8452d",
+          "strokeWidth": 2
+        },
+        "encoding": {
+          "x": {
+            "field": "d",
+            "type": "temporal"
+          },
+          "y": {
+            "field": "ict_index_2019",
+            "type": "quantitative"
+          },
+          "tooltip": [
+            {
+              "field": "state",
+              "type": "nominal",
+              "title": "State"
+            },
+            {
+              "field": "d",
+              "type": "temporal",
+              "title": "Month",
+              "format": "%b %Y"
+            },
+            {
+              "field": "ict_index_2019",
+              "type": "quantitative",
+              "title": "ICT job ads (Jan 2019 = 100)",
+              "format": ".0f"
+            }
+          ]
+        }
+      },
+      {
+        "mark": {
+          "type": "line",
+          "color": "#4b5862",
+          "strokeDash": [
+            3,
+            3
+          ],
+          "strokeWidth": 1.1
+        },
+        "encoding": {
+          "x": {
+            "field": "d",
+            "type": "temporal"
+          },
+          "y": {
+            "field": "base",
+            "type": "quantitative"
+          }
+        }
+      },
+      {
+        "transform": [
+          {
+            "filter": "datum.endlbl !== null"
+          }
+        ],
+        "mark": {
+          "type": "circle",
+          "size": 55,
+          "color": "#c8452d",
+          "stroke": "#ffffff",
+          "strokeWidth": 1.5
+        },
+        "encoding": {
+          "x": {
+            "field": "d",
+            "type": "temporal"
+          },
+          "y": {
+            "field": "ict_index_2019",
+            "type": "quantitative"
+          }
+        }
+      },
+      {
+        "transform": [
+          {
+            "filter": "datum.endlbl !== null"
+          }
+        ],
+        "mark": {
+          "type": "text",
+          "align": "right",
+          "dy": -6,
+          "fontSize": 15,
+          "fontWeight": 700,
+          "color": "#a8321d"
+        },
+        "encoding": {
+          "x": {
+            "field": "d",
+            "type": "temporal"
+          },
+          "y": {
+            "field": "top",
+            "type": "quantitative"
+          },
+          "text": {
+            "field": "endlbl"
+          }
+        }
+      }
+    ]
+  }
+}

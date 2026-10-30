@@ -1,0 +1,339 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Line chart of monthly ICT Professional job advertisements in Australia, 2006 to August 2026.",
+  "width": "container",
+  "height": 320,
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding"
+  },
+  "data": {
+    "url": "data/ict_state_monthly.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "date": "string",
+        "state": "string",
+        "ict_ads": "number",
+        "all_ads": "number",
+        "ict_share_pct": "number"
+      }
+    }
+  },
+  "transform": [
+    {
+      "filter": "datum.state === 'AUST'"
+    },
+    {
+      "calculate": "toDate(datum.date)",
+      "as": "d"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "area",
+        "color": "#c8452d",
+        "opacity": 0.12
+      },
+      "encoding": {
+        "x": {
+          "field": "d",
+          "type": "temporal",
+          "axis": {
+            "title": null,
+            "format": "%Y",
+            "tickCount": {
+              "interval": "year",
+              "step": 2
+            },
+            "grid": false
+          }
+        },
+        "y": {
+          "field": "ict_ads",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              18000
+            ]
+          },
+          "axis": {
+            "title": "ICT job ads per month",
+            "format": ",d",
+            "values": [
+              0,
+              4000,
+              8000,
+              12000,
+              16000
+            ]
+          }
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "line",
+        "color": "#c8452d",
+        "strokeWidth": 2.2
+      },
+      "encoding": {
+        "x": {
+          "field": "d",
+          "type": "temporal",
+          "axis": {
+            "title": null,
+            "format": "%Y",
+            "tickCount": {
+              "interval": "year",
+              "step": 2
+            },
+            "grid": false
+          }
+        },
+        "y": {
+          "field": "ict_ads",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              18000
+            ]
+          },
+          "axis": {
+            "title": "ICT job ads per month",
+            "format": ",d",
+            "values": [
+              0,
+              4000,
+              8000,
+              12000,
+              16000
+            ]
+          }
+        },
+        "tooltip": [
+          {
+            "field": "d",
+            "type": "temporal",
+            "title": "Month",
+            "format": "%b %Y"
+          },
+          {
+            "field": "ict_ads",
+            "type": "quantitative",
+            "title": "ICT job ads",
+            "format": ",.0f"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "date": "2008-02-01",
+            "ads": 19151,
+            "text": "Feb 2008 · 19,151"
+          },
+          {
+            "date": "2020-06-01",
+            "ads": 7038,
+            "text": "Jun 2020 · COVID-19 · 7,038"
+          },
+          {
+            "date": "2022-04-01",
+            "ads": 14771,
+            "text": "Peak: Apr 2022 · 14,771"
+          },
+          {
+            "date": "2026-08-01",
+            "ads": 5785,
+            "text": "Now: Aug 2026 · 5,785"
+          }
+        ]
+      },
+      "transform": [
+        {
+          "calculate": "toDate(datum.date)",
+          "as": "d"
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "size": 70,
+        "color": "#c8452d",
+        "stroke": "#ffffff",
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "x": {
+          "field": "d",
+          "type": "temporal"
+        },
+        "y": {
+          "field": "ads",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "date": "2008-02-01",
+            "ads": 19151,
+            "text": "Feb 2008 · 19,151"
+          }
+        ]
+      },
+      "transform": [
+        {
+          "calculate": "toDate(datum.date)",
+          "as": "d"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 10,
+        "dy": -8,
+        "fontSize": 14,
+        "fontWeight": 600,
+        "color": "#1c2530"
+      },
+      "encoding": {
+        "x": {
+          "field": "d",
+          "type": "temporal"
+        },
+        "y": {
+          "field": "ads",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "text"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "date": "2020-06-01",
+            "ads": 7038,
+            "text": "Jun 2020 · COVID-19 · 7,038"
+          }
+        ]
+      },
+      "transform": [
+        {
+          "calculate": "toDate(datum.date)",
+          "as": "d"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "dx": 0,
+        "dy": 22,
+        "fontSize": 14,
+        "fontWeight": 600,
+        "color": "#1c2530"
+      },
+      "encoding": {
+        "x": {
+          "field": "d",
+          "type": "temporal"
+        },
+        "y": {
+          "field": "ads",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "text"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "date": "2022-04-01",
+            "ads": 14771,
+            "text": "Peak: Apr 2022 · 14,771"
+          }
+        ]
+      },
+      "transform": [
+        {
+          "calculate": "toDate(datum.date)",
+          "as": "d"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "dx": 0,
+        "dy": -14,
+        "fontSize": 14,
+        "fontWeight": 600,
+        "color": "#1c2530"
+      },
+      "encoding": {
+        "x": {
+          "field": "d",
+          "type": "temporal"
+        },
+        "y": {
+          "field": "ads",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "text"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "date": "2026-08-01",
+            "ads": 5785,
+            "text": "Now: Aug 2026 · 5,785"
+          }
+        ]
+      },
+      "transform": [
+        {
+          "calculate": "toDate(datum.date)",
+          "as": "d"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": 0,
+        "dy": 30,
+        "fontSize": 14,
+        "fontWeight": 600,
+        "color": "#1c2530"
+      },
+      "encoding": {
+        "x": {
+          "field": "d",
+          "type": "temporal"
+        },
+        "y": {
+          "field": "ads",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "text"
+        }
+      }
+    }
+  ]
+}

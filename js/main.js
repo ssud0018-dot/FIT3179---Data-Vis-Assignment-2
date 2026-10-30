@@ -2,14 +2,16 @@
 // Specs are plain JSON files so each chart can be read (and marked) on its own.
 
 const charts = [
-  ["#fig1", "specs/c1_line.json"],
-  ["#fig2", "specs/c2_choropleth.json"],
-  ["#fig3", "specs/c3_symbol_map.json"],
-  ["#fig4", "specs/c4_tile_grid.json"],
-  ["#fig5", "specs/c5_occupations.json"],
-  ["#fig6", "specs/c6_heatmap.json"],
-  ["#fig7", "specs/c7_capitals_dumbbell.json"],
-  ["#fig8", "specs/c8_census.json"]
+  ["#fig1", "specs/f01_national_line.json"],
+  ["#fig2", "specs/f02_index_vs_other.json"],
+  ["#fig3", "specs/f03_choropleth.json"],
+  ["#fig4", "specs/f04_symbol_map.json"],
+  ["#fig5", "specs/f05_cartogram.json"],
+  ["#fig6", "specs/f06_small_multiples.json"],
+  ["#fig7", "specs/f07_occupations.json"],
+  ["#fig8", "specs/f08_heatmap.json"],
+  ["#fig9", "specs/f09_dumbbell.json"],
+  ["#fig10", "specs/f10_census.json"]
 ];
 
 function showError(selector, message) {

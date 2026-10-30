@@ -1,0 +1,262 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Line chart comparing job ads for ICT Professionals with job ads for all other occupations, both indexed to January 2019 = 100.",
+  "width": "container",
+  "height": 300,
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding"
+  },
+  "data": {
+    "url": "data/ict_state_monthly.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "date": "string",
+        "state": "string",
+        "ict_ads": "number",
+        "all_ads": "number",
+        "ict_share_pct": "number"
+      }
+    }
+  },
+  "transform": [
+    {
+      "filter": "datum.state === 'AUST' && datum.date >= '2019-01-01'"
+    },
+    {
+      "calculate": "toDate(datum.date)",
+      "as": "d"
+    },
+    {
+      "calculate": "datum.all_ads - datum.ict_ads",
+      "as": "other"
+    },
+    {
+      "calculate": "datum.date === '2019-01-01' ? datum.ict_ads : null",
+      "as": "b1"
+    },
+    {
+      "calculate": "datum.date === '2019-01-01' ? datum.other : null",
+      "as": "b2"
+    },
+    {
+      "joinaggregate": [
+        {
+          "op": "max",
+          "field": "b1",
+          "as": "base_ict"
+        },
+        {
+          "op": "max",
+          "field": "b2",
+          "as": "base_other"
+        }
+      ]
+    },
+    {
+      "calculate": "datum.ict_ads / datum.base_ict * 100",
+      "as": "ICT Professionals"
+    },
+    {
+      "calculate": "datum.other / datum.base_other * 100",
+      "as": "All other occupations"
+    },
+    {
+      "fold": [
+        "ICT Professionals",
+        "All other occupations"
+      ],
+      "as": [
+        "series",
+        "idx"
+      ]
+    },
+    {
+      "calculate": "datum.date === '2026-08-01' ? format(datum.idx - 100,'+.0f') + '%' : null",
+      "as": "endlbl"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "rule",
+        "color": "#6b7780",
+        "strokeDash": [
+          4,
+          4
+        ],
+        "strokeWidth": 1.2
+      },
+      "encoding": {
+        "y": {
+          "datum": 100
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 2.6
+      },
+      "encoding": {
+        "x": {
+          "field": "d",
+          "type": "temporal",
+          "axis": {
+            "title": null,
+            "format": "%Y",
+            "tickCount": "year",
+            "grid": false
+          }
+        },
+        "y": {
+          "field": "idx",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              30,
+              180
+            ]
+          },
+          "axis": {
+            "title": "Job ads (Jan 2019 = 100)",
+            "values": [
+              40,
+              60,
+              80,
+              100,
+              120,
+              140,
+              160,
+              180
+            ]
+          }
+        },
+        "color": {
+          "field": "series",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "ICT Professionals",
+              "All other occupations"
+            ],
+            "range": [
+              "#c8452d",
+              "#2f7f90"
+            ]
+          },
+          "legend": {
+            "title": null,
+            "orient": "top",
+            "symbolType": "stroke",
+            "symbolStrokeWidth": 3
+          }
+        },
+        "tooltip": [
+          {
+            "field": "d",
+            "type": "temporal",
+            "title": "Month",
+            "format": "%b %Y"
+          },
+          {
+            "field": "series",
+            "type": "nominal",
+            "title": "Group"
+          },
+          {
+            "field": "idx",
+            "type": "quantitative",
+            "title": "Index (Jan 2019 = 100)",
+            "format": ".0f"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.endlbl !== null"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 8,
+        "fontSize": 15,
+        "fontWeight": 700
+      },
+      "encoding": {
+        "x": {
+          "field": "d",
+          "type": "temporal"
+        },
+        "y": {
+          "field": "idx",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "endlbl"
+        },
+        "color": {
+          "field": "series",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "ICT Professionals",
+              "All other occupations"
+            ],
+            "range": [
+              "#a8321d",
+              "#1f6677"
+            ]
+          },
+          "legend": null
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "d": "2019-04-01",
+            "y": 103,
+            "t": "Jan 2019 level"
+          }
+        ]
+      },
+      "transform": [
+        {
+          "calculate": "toDate(datum.d)",
+          "as": "dd"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dy": -8,
+        "fontSize": 13,
+        "color": "#5b6770"
+      },
+      "encoding": {
+        "x": {
+          "field": "dd",
+          "type": "temporal"
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}

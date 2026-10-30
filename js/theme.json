@@ -10,20 +10,25 @@
     "gridColor": "#e8ebed",
     "domainColor": "#c4ccd1",
     "tickColor": "#c4ccd1",
-    "labelFontSize": 11,
-    "titleFontSize": 11,
+    "labelFontSize": 13,
+    "titleFontSize": 13,
     "titleFontWeight": "normal",
     "titlePadding": 10
   },
   "legend": {
-    "labelColor": "#5b6770",
+    "labelColor": "#1c2530",
     "titleColor": "#5b6770",
-    "labelFontSize": 11,
-    "titleFontSize": 11,
+    "labelFontSize": 13,
+    "titleFontSize": 13,
     "titleFontWeight": "normal"
+  },
+  "header": {
+    "labelFontSize": 14,
+    "labelFontWeight": "bold",
+    "labelColor": "#1c2530"
   },
   "text": {
     "color": "#1c2530",
-    "fontSize": 11
+    "fontSize": 13
   }
 }
