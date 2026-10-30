@@ -44,7 +44,7 @@ h1 {
   line-height: 1.12;
   letter-spacing: -.01em;
 }
-.lead { margin: 0 0 32px; max-width: 62ch; font-size: 1.1rem; color: #e6f0f2; }
+.lead { margin: 0 0 32px; max-width: none; font-size: 1.1rem; color: #e6f0f2; }
 
 .stats {
   display: grid;
