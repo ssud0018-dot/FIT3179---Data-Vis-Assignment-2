@@ -72,7 +72,7 @@ h1 {
 /* ---------- sections ---------- */
 main { padding-top: 24px; padding-bottom: 16px; }
 section { margin: 36px 0; }
-section > p { max-width: 96ch; margin: 0 0 14px; }
+section > p { max-width: none; margin: 0 0 16px; font-size: 1.03rem; line-height: 1.65; }
 h2 {
   font-family: var(--head);
   font-weight: 700;
@@ -96,7 +96,7 @@ h2 {
 /* ---------- figures ---------- */
 .fig-row {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 290px;
+  grid-template-columns: minmax(0, 1fr) 310px;
   gap: 20px;
   align-items: start;
   margin: 0 0 26px;
@@ -130,7 +130,7 @@ figcaption {
   font-size: 13px;
   line-height: 1.5;
   color: var(--muted);
-  max-width: 78ch;
+  max-width: none;
 }
 figcaption strong { color: var(--ink); }
 .src { display: block; margin-top: 3px; font-size: 13px; }
@@ -144,7 +144,7 @@ figcaption strong { color: var(--ink); }
   padding: 22px 28px 10px;
 }
 .takeaway h2 { color: #fff; }
-.takeaway p { max-width: 66ch; }
+.takeaway p { max-width: none; }
 
 /* ---------- footer ---------- */
 .site-footer {

@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Line chart of monthly ICT Professional job advertisements in Australia, 2006 to August 2026.",
   "width": "container",
-  "height": 320,
+  "height": 345,
   "autosize": {
     "type": "fit-x",
     "contains": "padding"

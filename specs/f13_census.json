@@ -3,7 +3,7 @@
   "description": "Bar chart of the percentage growth in the number of workers in ICT occupations between the 2016 and 2021 Censuses.",
   "width": "container",
   "height": {
-    "step": 44
+    "step": 62
   },
   "autosize": {
     "type": "fit-x",

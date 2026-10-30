@@ -3,7 +3,7 @@
   "description": "Stacked bars showing each state's share of the eight states' combined ICT job ads, January 2019 and August 2026.",
   "width": "container",
   "height": {
-    "step": 78
+    "step": 118
   },
   "autosize": {
     "type": "fit-x",
